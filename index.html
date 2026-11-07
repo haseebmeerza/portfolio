@@ -1,571 +1,139 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Haseeb Mirza — Senior Finance & Full-Stack Professional</title>
+  <title>Haseeb Mirza — Senior Finance & Full-Stack Developer</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Global Styling */
-    body { 
-      background: #0b0d14; 
-      color: #f3f4f6; 
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; 
+    body { background: #0b0f19; color: #f3f4f6; font-family: system-ui, -apple-system, sans-serif; }
+    
+    /* Interactive Floating Transitions */
+    .float-card {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease, border-color 0.3s ease;
     }
+    .float-card:hover, .float-card:focus, .float-active {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px -6px rgba(59, 130, 246, 0.35);
+    }
+    
+    /* Dynamic Single Page Switching */
+    .page-view { display: none; }
+    .page-view.active { display: block; }
 
-    /* Interactive Floating Effect on Hover or Active Class */
-    .float-hover {
-      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
-    }
-    .float-hover:hover, .float-active {
-      transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.6), 0 0 25px 2px rgba(245, 158, 11, 0.25);
-    }
-
-    /* Subtle pulse animation for active button state */
-    @keyframes subtlePulseFloat {
-      0%, 100% { transform: translateY(-3px); }
-      50% { transform: translateY(-7px); }
-    }
-    .animate-menu-float {
-      animation: subtlePulseFloat 2.5s ease-in-out infinite;
-    }
-
-    /* Custom Scrollbars */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #0b0d14; }
-    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #d97706; }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0b0f19; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; rounded: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
   </style>
 </head>
-<body class="h-full flex flex-col md:flex-row overflow-hidden">
+<body class="min-h-screen flex flex-col md:flex-row m-0 p-0 overflow-x-hidden bg-[#0b0f19]">
 
-  <!-- Mobile Top Navigation Header -->
-  <header class="md:hidden bg-slate-900 border-b border-amber-900/30 p-4 flex justify-between items-center z-40 shrink-0">
-    <div class="flex items-center gap-3">
-      <img src="Haseeb Mirza_2.png" alt="HM Logo" class="w-10 h-10 object-contain rounded-lg border border-amber-500/30 bg-slate-800 p-1" onerror="this.onerror=null; this.src='Haseeb Mirza.png';">
-      <div>
-        <h1 class="text-sm font-bold text-white">Haseeb Mirza</h1>
-        <p class="text-[10px] text-amber-400">Finance & Developer</p>
-      </div>
-    </div>
-    <button onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white border border-slate-700">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-    </button>
-  </header>
-
-  <!-- STICKY & FIXED LEFT SIDEBAR MENU (Never hides while scrolling) -->
-  <aside id="sidebarMenu" class="fixed inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 w-72 bg-slate-900/95 backdrop-blur-xl border-r border-slate-800 p-6 flex flex-col justify-between shrink-0 z-50 transition-transform duration-300 ease-in-out h-full overflow-y-auto">
+  <!-- Fixed Pinned Left Sidebar Menu (Remains visible while scrolling) -->
+  <aside class="w-full md:w-64 bg-slate-900/90 backdrop-blur-md border-r border-slate-800/80 p-5 flex flex-col justify-between shrink-0 md:sticky md:top-0 md:h-screen z-50">
     <div class="space-y-6">
-      
-      <!-- Top Left Brand Logo & Title -->
-      <div class="border-b border-slate-800 pb-5">
-        <div class="flex items-center gap-3">
-          <img src="Haseeb Mirza_2.png" alt="Haseeb Mirza Logo" class="w-12 h-12 object-contain rounded-xl border border-slate-700/80 bg-slate-800/80 p-1 shadow-lg float-hover" onerror="this.onerror=null; this.src='Haseeb Mirza.png';">
-          <div>
-            <h2 class="text-base font-bold text-white tracking-wide">Haseeb Mirza</h2>
-            <p class="text-[11px] text-blue-400 font-medium">AR Supervisor & Dev</p>
-          </div>
+      <!-- Top Left Brand & Logo Header -->
+      <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
+        <img src="Haseeb Mirza_2.png" alt="Haseeb Mirza Logo" class="w-10 h-10 rounded-lg object-cover border border-slate-700 bg-slate-800 shrink-0" onerror="this.src='Haseeb Mirza.png'">
+        <div class="overflow-hidden">
+          <h2 class="text-sm font-bold text-white tracking-wide truncate">Haseeb Mirza</h2>
+          <span class="inline-block mt-0.5 px-2 py-0.5 rounded text-[9px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            🟢 Available for Remote Work
+          </span>
         </div>
       </div>
       
-      <!-- Single Page Application Navigation Links -->
-      <nav class="space-y-2.5">
-        <button onclick="switchView('overview', this)" id="nav-overview" class="nav-btn w-full flex items-center justify-between px-4 py-3 text-xs font-semibold rounded-xl bg-blue-600/20 text-blue-400 border border-blue-500/30 float-hover animate-menu-float">
-          <span class="flex items-center gap-2.5">
-            <span>📊</span> Executive Overview
-          </span>
-          <span class="text-[10px] opacity-75">➔</span>
+      <!-- Interactive Navigation Buttons -->
+      <nav class="space-y-2" id="sidebar-nav">
+        <button onclick="switchPage('overview', this)" class="nav-btn w-full text-left px-3.5 py-2.5 text-xs font-semibold rounded-xl bg-blue-600/20 text-blue-400 border border-blue-500/30 float-card float-active flex items-center justify-between">
+          <span class="flex items-center gap-2.5">📊 <span>Overview & Skills</span></span>
+          <span class="text-[10px]">➔</span>
         </button>
 
-        <button onclick="switchView('cv-section', this)" id="nav-cv-section" class="nav-btn w-full flex items-center justify-between px-4 py-3 text-xs font-semibold rounded-xl text-slate-400 hover:bg-slate-800/80 hover:text-white border border-transparent float-hover">
-          <span class="flex items-center gap-2.5">
-            <span>💼</span> Full CV & Experience
-          </span>
-          <span class="text-[10px] opacity-75">➔</span>
+        <button onclick="switchPage('experience', this)" class="nav-btn w-full text-left px-3.5 py-2.5 text-xs font-semibold rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white border border-transparent float-card flex items-center justify-between">
+          <span class="flex items-center gap-2.5">💼 <span>Full CV & Experience</span></span>
+          <span class="text-[10px]">➔</span>
         </button>
 
-        <button onclick="switchView('projects', this)" id="nav-projects" class="nav-btn w-full flex items-center justify-between px-4 py-3 text-xs font-semibold rounded-xl text-slate-400 hover:bg-slate-800/80 hover:text-white border border-transparent float-hover">
-          <span class="flex items-center gap-2.5">
-            <span>💻</span> Apps & Systems
-          </span>
-          <span class="text-[10px] opacity-75">➔</span>
+        <button onclick="switchPage('projects', this)" class="nav-btn w-full text-left px-3.5 py-2.5 text-xs font-semibold rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white border border-transparent float-card flex items-center justify-between">
+          <span class="flex items-center gap-2.5">💻 <span>Apps & Systems</span></span>
+          <span class="text-[10px]">➔</span>
         </button>
 
-        <button onclick="switchView('contact', this)" id="nav-contact" class="nav-btn w-full flex items-center justify-between px-4 py-3 text-xs font-semibold rounded-xl text-slate-400 hover:bg-slate-800/80 hover:text-white border border-transparent float-hover">
-          <span class="flex items-center gap-2.5">
-            <span>📱</span> Contact & Channels
-          </span>
-          <span class="text-[10px] opacity-75">➔</span>
+        <button onclick="switchPage('contact', this)" class="nav-btn w-full text-left px-3.5 py-2.5 text-xs font-semibold rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white border border-transparent float-card flex items-center justify-between">
+          <span class="flex items-center gap-2.5">📱 <span>Contact & Channels</span></span>
+          <span class="text-[10px]">➔</span>
         </button>
       </nav>
     </div>
 
-    <!-- Sidebar Footer CV Action & Availability -->
-    <div class="space-y-3 border-t border-slate-800 pt-5 mt-4">
-      <button onclick="downloadCvText()" class="w-full flex items-center justify-center gap-2 py-2.5 px-3 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-slate-950 font-extrabold rounded-xl text-xs transition shadow-lg shadow-amber-950/50 float-hover">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-        </svg>
-        Download CV File
-      </button>
-
-      <div class="text-[11px] text-slate-400 text-center space-y-0.5">
-        <p class="font-semibold text-amber-400">Remote Worldwide Availability</p>
-        <p class="text-[10px] text-slate-500">UAE, Pakistan & Global Clients</p>
+    <!-- Direct CV Download Action -->
+    <div class="space-y-3 border-t border-slate-800 pt-4 mt-6">
+      <a href="Haseeb Mirza - AR Supervisor CV.pdf" download class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold text-xs py-2.5 px-3 rounded-xl transition float-card flex items-center justify-center gap-2 shadow-lg">
+        📥 <span>Download CV File</span>
+      </a>
+      <div class="text-[10px] text-slate-500 text-center leading-tight">
+        Remote Worldwide Availability<br><span class="text-slate-400">UAE, Pakistan & Global Clients</span>
       </div>
     </div>
   </aside>
 
-  <!-- Mobile Overlay Backdrop -->
-  <div id="mobileOverlay" onclick="toggleMobileMenu()" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-40 md:hidden"></div>
+  <!-- Main Content Area -->
+  <main class="flex-1 p-4 md:p-8 overflow-y-auto max-w-6xl space-y-8">
 
-  <!-- MAIN SCROLLABLE DISPLAY CONTAINER -->
-  <main class="flex-1 overflow-y-auto p-4 md:p-10 space-y-8 max-w-6xl mx-auto h-full">
-
-    <!-- VIEW 1: EXECUTIVE OVERVIEW (MAIN MENU HOME PAGE) -->
-    <section id="overview" class="view-page space-y-8">
+    <!-- ================= VIEW 1: EXECUTIVE OVERVIEW ================= -->
+    <div id="view-overview" class="page-view active space-y-8">
       
-      <!-- Top Integrated Banner Image -->
-      <div class="w-full bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl float-hover">
-        <img src="banner.png" alt="Haseeb Mirza Accounting & Bookkeeping Services" class="w-full h-auto object-cover max-h-80 md:max-h-96" onerror="this.onerror=null; this.src='LinkedIn profile photo - Haseeb Mirza_2.jpg';">
-      </div>
-
-      <!-- Dashboard Grid: Interactive KPI Application Cards (Left) & Portrait Banner (Right) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-        
-        <!-- Left Side: Interactive Application KPI Cards (7 Cols) -->
-        <div class="lg:col-span-7 space-y-4 flex flex-col justify-between">
-          <div class="flex justify-between items-center mb-1">
-            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Application Skills & Systems</h2>
-            <span class="text-[11px] text-blue-400 font-medium">💡 Click any card to launch module</span>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <!-- App Card 1: POS System -->
-            <div onclick="switchView('projects', document.getElementById('nav-projects'))" class="kpi-card float-hover bg-slate-900 border border-slate-800 hover:border-emerald-500/50 rounded-2xl p-5 shadow-xl cursor-pointer select-none transition group">
-              <div class="flex justify-between items-start">
-                <span class="text-2xl p-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">🛒</span>
-                <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded font-bold">LIVE</span>
-              </div>
-              <h3 class="text-base font-bold text-white mt-3 group-hover:text-amber-400 transition">LIVE POS SYSTEM</h3>
-              <p class="text-[11px] text-slate-400 mt-1">Manage sales, real-time inventory & GPS attendance.</p>
+      <!-- Native Executive Header Banner (Dark Theme Harmonized) -->
+      <section class="bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-800/80 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 relative z-10">
+          <div class="space-y-3 max-w-2xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+              ⚡ Senior AR Supervisor & Full-Stack Automation Specialist
             </div>
-
-            <!-- App Card 2: Android Quiz App -->
-            <div onclick="switchView('projects', document.getElementById('nav-projects'))" class="kpi-card float-hover bg-slate-900 border border-slate-800 hover:border-blue-500/50 rounded-2xl p-5 shadow-xl cursor-pointer select-none transition group">
-              <div class="flex justify-between items-start">
-                <span class="text-2xl p-2 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">📱</span>
-                <span class="text-[10px] bg-blue-950 text-blue-400 border border-blue-800 px-2 py-0.5 rounded font-bold">APK PIPELINE</span>
-              </div>
-              <h3 class="text-base font-bold text-white mt-3 group-hover:text-blue-400 transition">ANDROID QUIZ APP</h3>
-              <p class="text-[11px] text-slate-400 mt-1">Capacitor cross-platform build with GitHub CI/CD.</p>
-            </div>
-
-            <!-- App Card 3: Financial Dashboard -->
-            <div onclick="switchView('cv-section', document.getElementById('nav-cv-section'))" class="kpi-card float-hover bg-slate-900 border border-slate-800 hover:border-purple-500/50 rounded-2xl p-5 shadow-xl cursor-pointer select-none transition group">
-              <div class="flex justify-between items-start">
-                <span class="text-2xl p-2 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20">📈</span>
-                <span class="text-[10px] bg-purple-950 text-purple-400 border border-purple-800 px-2 py-0.5 rounded font-bold">POWER BI</span>
-              </div>
-              <h3 class="text-base font-bold text-white mt-3 group-hover:text-purple-400 transition">FINANCIAL DASHBOARD</h3>
-              <p class="text-[11px] text-slate-400 mt-1">Track 2,500+ AR accounts, aging & cash flows.</p>
-            </div>
-
-            <!-- App Card 4: Utility Tools -->
-            <div onclick="switchView('projects', document.getElementById('nav-projects'))" class="kpi-card float-hover bg-slate-900 border border-slate-800 hover:border-slate-500/50 rounded-2xl p-5 shadow-xl cursor-pointer select-none transition group">
-              <div class="flex justify-between items-start">
-                <span class="text-2xl p-2 rounded-xl bg-slate-800 text-slate-300 border border-slate-700">⚙️</span>
-                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-bold">AUTOMATION</span>
-              </div>
-              <h3 class="text-base font-bold text-white mt-3 group-hover:text-slate-300 transition">UTILITY TOOLS</h3>
-              <p class="text-[11px] text-slate-400 mt-1">Google Sheets API & automated workflow integrations.</p>
-            </div>
-          </div>
-
-          <!-- App Card 5: Full Width CV Download Banner -->
-          <div onclick="downloadCvText()" class="kpi-card float-hover bg-gradient-to-r from-amber-600/20 via-slate-900 to-emerald-600/20 border border-amber-500/30 rounded-2xl p-5 shadow-xl cursor-pointer select-none flex items-center justify-between group">
-            <div class="flex items-center gap-4">
-              <span class="text-3xl p-2.5 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30">📄</span>
-              <div>
-                <h3 class="text-base font-bold text-white group-hover:text-amber-400 transition">DOWNLOAD CURRICULUM VITAE</h3>
-                <p class="text-[11px] text-slate-300">17+ Years AR Leadership & Development Experience</p>
-              </div>
-            </div>
-            <span class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-black rounded-xl shadow-lg transition shrink-0">SAVE FILE 📥</span>
-          </div>
-        </div>
-
-        <!-- Right Side: High-Resolution Portrait Banner (5 Cols) -->
-        <div class="lg:col-span-5 flex flex-col justify-between bg-slate-900/90 border border-slate-800 rounded-3xl p-6 shadow-2xl relative overflow-hidden float-hover">
-          <div class="space-y-3 relative z-10">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400 bg-amber-950/80 border border-amber-800 px-3 py-1 rounded-full">Your Numbers My Priority</span>
-            <h3 class="text-2xl font-black text-white">Haseeb Mirza</h3>
-            <p class="text-xs text-slate-300 leading-relaxed">
-              Senior AR Supervisor & Credit Control Expert. Specializing in high-volume reconciliation (Amazon, Walmart, Noon) and building custom cloud-connected applications.
+            <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">Haseeb Mirza</h1>
+            <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+              Managing 2,500+ high-volume global client ledgers (Amazon, Walmart, Noon, Talabat) with 17+ years of expertise in credit control, cash flow optimization, and custom cloud database integrations.
             </p>
-          </div>
-
-          <!-- Portrait Image Container -->
-          <div class="my-4 relative rounded-2xl overflow-hidden border border-slate-800 shadow-xl bg-slate-950">
-            <img src="LinkedIn profile photo - Haseeb Mirza_2.jpg" alt="Haseeb Mirza Professional Portrait" class="w-full h-64 object-cover object-top hover:scale-105 transition duration-500" onerror="this.onerror=null; this.src='LinkedIn profile photo - Haseeb Mirza.jpg';">
-          </div>
-
-          <!-- Quick Contact Footer Bar inside Portrait Banner -->
-          <div class="pt-2 border-t border-slate-800 flex justify-between items-center text-xs text-slate-400 font-medium">
-            <span>📱 UAE: +971 50 725 6801</span>
-            <span>📱 PK: +92 345 2104860</span>
-          </div>
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- VIEW 2: FULL CV & EXPERIENCE PAGE -->
-    <section id="cv-section" class="view-page hidden space-y-6">
-      
-      <!-- Top Back to Menu Button -->
-      <div class="flex justify-between items-center bg-slate-900/90 border border-slate-800 p-4 rounded-2xl shadow-md">
-        <span class="text-xs font-semibold text-slate-300">📄 Page View: Full CV & Professional History</span>
-        <button onclick="switchView('overview', document.getElementById('nav-overview'))" class="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-slate-950 text-xs font-extrabold rounded-xl shadow-md transition float-hover flex items-center gap-2">
-          <span>⬅️</span> Back to Main Menu
-        </button>
-      </div>
-
-      <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-8 shadow-xl">
-        <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b border-slate-800 pb-5">
-          <div>
-            <h2 class="text-xl font-bold text-white">Curriculum Vitae</h2>
-            <p class="text-xs text-amber-400">Accounts Receivable Supervisor | Credit Control Expert | Full-Stack Dev</p>
-          </div>
-          <button onclick="downloadCvText()" class="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-slate-950 text-xs font-extrabold rounded-xl shadow-md transition float-hover flex items-center gap-2">
-            <span>💾</span> Save CV File
-          </button>
-        </div>
-
-        <!-- CV Summary & Skills -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="md:col-span-2 space-y-3">
-            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Professional Summary</h3>
-            <p class="text-xs text-slate-300 leading-relaxed bg-slate-800/40 p-4 rounded-2xl border border-slate-800">
-              Senior finance professional with 17+ years in receivables and credit control for a multi-entity retail group in the UAE, including Oman operations. Managed 2,500+ accounts, including high-volume accounts like Amazon, Walmart, Talabat, and Noon. Brought AR aging down from 90+ to 60 days through weekly aging reviews and automated workflows.
-            </p>
-          </div>
-          <div class="space-y-3">
-            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Core Competencies</h3>
-            <div class="flex flex-wrap gap-1.5">
-              <span class="bg-slate-800 text-slate-300 border border-slate-700 px-2.5 py-1 rounded-lg text-[11px]">Accounts Receivable</span>
-              <span class="bg-slate-800 text-slate-300 border border-slate-700 px-2.5 py-1 rounded-lg text-[11px]">Credit Risk</span>
-              <span class="bg-slate-800 text-slate-300 border border-slate-700 px-2.5 py-1 rounded-lg text-[11px]">Power BI & Excel</span>
-              <span class="bg-slate-800 text-slate-300 border border-slate-700 px-2.5 py-1 rounded-lg text-[11px]">UAE VAT Compliance</span>
-              <span class="bg-slate-800 text-slate-300 border border-slate-700 px-2.5 py-1 rounded-lg text-[11px]">Capacitor & Apps Script</span>
+            <div class="flex flex-wrap gap-4 pt-2 text-xs text-slate-400 font-mono">
+              <span>📍 UAE: <a href="tel:+971507256801" class="text-emerald-400 hover:underline">+971 50 725 6801</a></span>
+              <span>📍 PK: <a href="tel:+923452104860" class="text-blue-400 hover:underline">+92 345 2104860</a></span>
             </div>
           </div>
-        </div>
-
-        <!-- Experience Timeline -->
-        <div class="space-y-6 pt-2">
-          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Work Experience Timeline</h3>
           
-          <!-- Role 1 -->
-          <div class="relative pl-6 border-l-2 border-amber-500 space-y-2 float-hover p-4 rounded-2xl bg-slate-800/40 border border-slate-800">
-            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-1">
-              <h4 class="font-bold text-white text-sm">Freelance Finance & Data Professional</h4>
-              <span class="text-amber-400 font-mono text-[11px] bg-amber-950/60 px-2.5 py-0.5 rounded border border-amber-800">Mar 2026 – Present</span>
-            </div>
-            <p class="text-slate-300 text-xs font-medium">Independent / Remote | UAE & Global</p>
-            <ul class="list-disc list-inside space-y-1 text-slate-400 text-[11px]">
-              <li>Manage accounts receivable follow-up, ledger reconciliation, and data entry remotely for SMBs.</li>
-              <li>Build Power BI and advanced Excel dashboards tracking receivables, aging trends, and cash flow performance.</li>
-              <li>Clean up client ledgers and streamline billing processes, boosting data accuracy.</li>
-            </ul>
-          </div>
-
-          <!-- Role 2 -->
-          <div class="relative pl-6 border-l-2 border-emerald-500 space-y-2 float-hover p-4 rounded-2xl bg-slate-800/40 border border-slate-800">
-            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-1">
-              <h4 class="font-bold text-white text-sm">Accounts Receivable Supervisor</h4>
-              <span class="text-slate-400 font-mono text-[11px] bg-slate-800 px-2.5 py-0.5 rounded border border-slate-700">Jan 2018 – Feb 2026</span>
-            </div>
-            <p class="text-slate-300 text-xs font-medium">Al Mir Group of Companies | UAE & Oman Operations</p>
-            <ul class="list-disc list-inside space-y-1 text-slate-400 text-[11px]">
-              <li>Cut AR aging from 90+ down to 60 days through structured weekly debtor reviews and automated workflows.</li>
-              <li>Led a team of 4 to deploy the group's in-house ERP, improving dispute resolution for 2,500+ accounts.</li>
-              <li>Managed high-volume key accounts including Amazon, Walmart, Talabat, and Noon.</li>
-              <li>Supervised 3 AR staff, maintained 100% compliance with UAE VAT/FTA regulations, and managed audit reconciliations.</li>
-            </ul>
-          </div>
-
-          <!-- Role 3 -->
-          <div class="relative pl-6 border-l-2 border-purple-500 space-y-2 float-hover p-4 rounded-2xl bg-slate-800/40 border border-slate-800">
-            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-1">
-              <h4 class="font-bold text-white text-sm">Accounts Receivable & Payable Executive</h4>
-              <span class="text-slate-400 font-mono text-[11px] bg-slate-800 px-2.5 py-0.5 rounded border border-slate-700">May 2008 – Jan 2018</span>
-            </div>
-            <p class="text-slate-300 text-xs font-medium">Al Mir Group of Companies | UAE</p>
-            <ul class="list-disc list-inside space-y-1 text-slate-400 text-[11px]">
-              <li>Handled invoice issuance, payment application, utility payments, and rental income reconciliations.</li>
-              <li>Supported month-end and year-end closing, journal entries, accruals, and internal/external audit schedules.</li>
-            </ul>
-          </div>
-
-          <!-- Role 4 -->
-          <div class="relative pl-6 border-l-2 border-amber-500 space-y-2 float-hover p-4 rounded-2xl bg-slate-800/40 border border-slate-800">
-            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-1">
-              <h4 class="font-bold text-white text-sm">Retail Operation Associate</h4>
-              <span class="text-slate-400 font-mono text-[11px] bg-slate-800 px-2.5 py-0.5 rounded border border-slate-700">Jan 2006 – Jan 2008</span>
-            </div>
-            <p class="text-slate-300 text-xs font-medium">Junaid Jamshed (Pvt.) Ltd. | Pakistan</p>
-            <ul class="list-disc list-inside space-y-1 text-slate-400 text-[11px]">
-              <li>Led the Candela POS rollout across 13 cities, standardizing accounting, inventory, and sales workflows.</li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Bottom Back to Menu Button -->
-      <div class="flex justify-end pt-2">
-        <button onclick="switchView('overview', document.getElementById('nav-overview'))" class="px-5 py-2.5 bg-amber-600 hover:bg-amber-500 text-slate-950 text-xs font-extrabold rounded-xl shadow-md transition float-hover flex items-center gap-2">
-          <span>⬅️</span> Back to Main Menu
-        </button>
-      </div>
-
-    </section>
-
-    <!-- VIEW 3: APPS & SYSTEMS PAGE -->
-    <section id="projects" class="view-page hidden space-y-6">
-      
-      <!-- Top Back to Menu Button -->
-      <div class="flex justify-between items-center bg-slate-900/90 border border-slate-800 p-4 rounded-2xl shadow-md">
-        <span class="text-xs font-semibold text-slate-300">💻 Page View: Custom Applications & Mobile APK Systems</span>
-        <button onclick="switchView('overview', document.getElementById('nav-overview'))" class="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-slate-950 text-xs font-extrabold rounded-xl shadow-md transition float-hover flex items-center gap-2">
-          <span>⬅️</span> Back to Main Menu
-        </button>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        <!-- Project Card 1 -->
-        <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between space-y-5 float-hover shadow-xl">
-          <div class="space-y-3">
-            <div class="flex justify-between items-center">
-              <h3 class="font-bold text-white text-base">Live POS & Daily Planner System</h3>
-              <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-2.5 py-0.5 rounded-full font-bold">LIVE SYSTEM</span>
-            </div>
-            <p class="text-xs text-slate-300 leading-relaxed">
-              Full-featured enterprise application featuring role-based dashboards (Manager vs Team), GPS-stamped attendance logging, automated CSV reporting, and continuous sync with Google Apps Script databases.
-            </p>
-          </div>
-          <div class="flex flex-wrap gap-1.5 pt-2 border-t border-slate-800/60">
-            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded-lg border border-slate-700">Tailwind CSS</span>
-            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded-lg border border-slate-700">Google Apps Script</span>
-            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded-lg border border-slate-700">JavaScript ES6</span>
+          <!-- Personal Headshot -->
+          <div class="shrink-0 relative">
+            <img src="LinkedIn profile photo - Haseeb Mirza_2.jpg" alt="Haseeb Mirza Professional Portrait" class="w-32 h-32 md:w-36 md:h-36 object-cover rounded-2xl border-2 border-slate-700 shadow-2xl bg-slate-800" onerror="this.src='LinkedIn profile photo - Haseeb Mirza.jpg'">
           </div>
         </div>
+      </section>
 
-        <!-- Project Card 2 -->
-        <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between space-y-5 float-hover shadow-xl">
-          <div class="space-y-3">
-            <div class="flex justify-between items-center">
-              <h3 class="font-bold text-white text-base">MCQ-Quiz Android App & Pipeline</h3>
-              <span class="text-[10px] bg-amber-950 text-amber-400 border border-amber-800 px-2.5 py-0.5 rounded-full font-bold">CAPACITOR APK</span>
-            </div>
-            <p class="text-xs text-slate-300 leading-relaxed">
-              Cross-platform testing platform utilizing Capacitor 6 with automated GitHub Actions CI/CD workflows for instant APK compilation, offline state management, and localized Urdu Nastaliq typography.
-            </p>
-          </div>
-          <div class="flex flex-wrap gap-1.5 pt-2 border-t border-slate-800/60">
-            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded-lg border border-slate-700">Capacitor 6</span>
-            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded-lg border border-slate-700">GitHub Actions</span>
-            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded-lg border border-slate-700">Android SDK</span>
-          </div>
+      <!-- Application Skills & Interactive Dashboard Section -->
+      <section class="space-y-4">
+        <div class="flex justify-between items-center">
+          <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Application Skills & Systems</h2>
+          <span class="text-[11px] text-amber-400 font-medium">💡 Click any card to launch module</span>
         </div>
 
-      </div>
-
-      <!-- Bottom Back to Menu Button -->
-      <div class="flex justify-end pt-2">
-        <button onclick="switchView('overview', document.getElementById('nav-overview'))" class="px-5 py-2.5 bg-amber-600 hover:bg-amber-500 text-slate-950 text-xs font-extrabold rounded-xl shadow-md transition float-hover flex items-center gap-2">
-          <span>⬅️</span> Back to Main Menu
-        </button>
-      </div>
-
-    </section>
-
-    <!-- VIEW 4: DIRECT CONTACT & CHANNELS PAGE -->
-    <section id="contact" class="view-page hidden space-y-6">
-      
-      <!-- Top Back to Menu Button -->
-      <div class="flex justify-between items-center bg-slate-900/90 border border-slate-800 p-4 rounded-2xl shadow-md">
-        <span class="text-xs font-semibold text-slate-300">📱 Page View: Direct Contact & QR Scanner</span>
-        <button onclick="switchView('overview', document.getElementById('nav-overview'))" class="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-slate-950 text-xs font-extrabold rounded-xl shadow-md transition float-hover flex items-center gap-2">
-          <span>⬅️</span> Back to Main Menu
-        </button>
-      </div>
-
-      <div class="bg-gradient-to-br from-slate-900 via-slate-900 to-amber-950/40 border border-amber-500/20 rounded-3xl p-6 md:p-8 space-y-6 shadow-2xl">
-        <div class="border-b border-slate-800 pb-4">
-          <h2 class="text-xl font-bold text-white">Contact & WhatsApp Connect</h2>
-          <p class="text-xs text-slate-400">Scan the QR code directly or call/message for project inquiries.</p>
-        </div>
-
-        <div class="flex flex-col md:flex-row items-center gap-8">
+        <!-- 2-Column Dashboard Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           
-          <!-- Embedded WhatsApp Scan Image -->
-          <div class="bg-slate-800/80 p-4 rounded-2xl border border-amber-500/30 shadow-xl text-center shrink-0 float-hover">
-            <img src="Whtsapp Scan_2.jpeg" alt="WhatsApp Business QR Code Haseeb Mirza" class="w-56 h-auto object-contain rounded-xl border border-slate-600 shadow-md" onerror="this.onerror=null; this.src='Whtsapp Scan.jpeg';">
-            <p class="text-[11px] font-semibold text-slate-300 mt-3">Scan Code for WhatsApp Chat</p>
+          <!-- Card 1: Live POS System -->
+          <div onclick="switchPage('projects', document.querySelectorAll('.nav-btn')[2])" class="float-card bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg cursor-pointer select-none space-y-4 flex flex-col justify-between" data-state="0">
+            <div class="flex justify-between items-start">
+              <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-lg">🛒</div>
+              <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-bold uppercase">LIVE</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-base">LIVE POS SYSTEM</h3>
+              <p class="text-xs text-slate-400 mt-1 leading-relaxed">Manage sales, real-time inventory & GPS attendance with Google Sheets backend.</p>
+            </div>
+            <div class="flex items-center justify-between text-[11px] text-blue-400 pt-2 border-t border-slate-800/60 font-medium">
+              <span>View Module Details</span>
+              <span>➔</span>
+            </div>
           </div>
 
-          <!-- Direct Phone & Email Cards -->
-          <div class="flex-1 space-y-4 w-full">
-            
-            <a href="https://wa.me/971507256801" target="_blank" class="float-hover p-4 bg-slate-800/70 border border-slate-700 rounded-2xl flex items-center gap-4 block">
-              <div class="w-12 h-12 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-xl font-bold shrink-0">
-                💬
-              </div>
-              <div>
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">UAE Phone & WhatsApp</p>
-                <p class="text-sm font-bold text-white mt-0.5">+971 50 725 6801</p>
-              </div>
-            </a>
-
-            <a href="tel:+923452104860" class="float-hover p-4 bg-slate-800/70 border border-slate-700 rounded-2xl flex items-center gap-4 block">
-              <div class="w-12 h-12 rounded-xl bg-amber-600/20 text-amber-400 flex items-center justify-center text-xl font-bold shrink-0">
-                📱
-              </div>
-              <div>
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Pakistan Phone / WhatsApp</p>
-                <p class="text-sm font-bold text-white mt-0.5">+92 345 2104860</p>
-              </div>
-            </a>
-
-            <a href="mailto:haseebmeerza@hotmail.com" class="float-hover p-4 bg-slate-800/70 border border-slate-700 rounded-2xl flex items-center gap-4 block">
-              <div class="w-12 h-12 rounded-xl bg-purple-600/20 text-purple-400 flex items-center justify-center text-xl font-bold shrink-0">
-                ✉️
-              </div>
-              <div>
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Email Address</p>
-                <p class="text-sm font-bold text-white mt-0.5">haseebmeerza@hotmail.com</p>
-              </div>
-            </a>
-
-          </div>
-        </div>
-      </div>
-
-      <!-- Bottom Back to Menu Button -->
-      <div class="flex justify-end pt-2">
-        <button onclick="switchView('overview', document.getElementById('nav-overview'))" class="px-5 py-2.5 bg-amber-600 hover:bg-amber-500 text-slate-950 text-xs font-extrabold rounded-xl shadow-md transition float-hover flex items-center gap-2">
-          <span>⬅️</span> Back to Main Menu
-        </button>
-      </div>
-
-    </section>
-
-    <!-- Footer -->
-    <footer class="border-t border-slate-800 pt-6 text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-3">
-      <p>© 2026 Haseeb Mirza. Accounting, Bookkeeping & Full-Stack Systems.</p>
-      <button onclick="switchView('overview', document.getElementById('nav-overview'))" class="text-amber-400 hover:underline">Back to Main Menu Top</button>
-    </footer>
-
-  </main>
-
-  <!-- INTERACTIVE SCRIPT LOGIC -->
-  <script>
-    // Cycle background colors and apply active float state to KPI Cards
-    function cycleCardColor(card) {
-      const colorSchemes = [
-        { bg: 'bg-slate-900/90', border: 'border-amber-500/30' },
-        { bg: 'bg-amber-950/90', border: 'border-amber-500/60' },
-        { bg: 'bg-emerald-950/90', border: 'border-emerald-600/60' },
-        { bg: 'bg-purple-950/90', border: 'border-purple-600/60' }
-      ];
-      
-      let currentState = parseInt(card.getAttribute('data-state')) || 0;
-      currentState = (currentState + 1) % colorSchemes.length;
-      card.setAttribute('data-state', currentState);
-
-      card.className = `kpi-card float-hover float-active ${colorSchemes[currentState].bg} border ${colorSchemes[currentState].border} rounded-2xl p-5 shadow-2xl cursor-pointer select-none flex-1 flex flex-col justify-center`;
-    }
-
-    // Single-Page Application (SPA) View Switcher
-    function switchView(viewId, btnElement) {
-      // Hide all page views
-      const pages = document.querySelectorAll('.view-page');
-      pages.forEach(page => page.classList.add('hidden'));
-
-      // Show targeted page view
-      const targetPage = document.getElementById(viewId);
-      if (targetPage) {
-        targetPage.classList.remove('hidden');
-      }
-
-      // Reset menu button styles & animations
-      const navButtons = document.querySelectorAll('.nav-btn');
-      navButtons.forEach(btn => {
-        btn.classList.remove('bg-amber-500/20', 'text-amber-400', 'border-amber-500/40', 'animate-menu-float', 'float-active');
-        btn.classList.add('text-slate-400', 'border-transparent');
-      });
-
-      // Highlight active menu button
-      if (btnElement) {
-        btnElement.classList.remove('text-slate-400', 'border-transparent');
-        btnElement.classList.add('bg-amber-500/20', 'text-amber-400', 'border-amber-500/40', 'animate-menu-float', 'float-active');
-      }
-
-      // Auto-close mobile navigation drawer
-      const sidebar = document.getElementById('sidebarMenu');
-      const overlay = document.getElementById('mobileOverlay');
-      if (!sidebar.classList.contains('-translate-x-full')) {
-        sidebar.classList.add('-translate-x-full');
-        overlay.classList.add('hidden');
-      }
-
-      // Scroll top of container
-      document.querySelector('main').scrollTop = 0;
-    }
-
-    // Toggle Mobile Drawer Menu
-    function toggleMobileMenu() {
-      const sidebar = document.getElementById('sidebarMenu');
-      const overlay = document.getElementById('mobileOverlay');
-      sidebar.classList.toggle('-translate-x-full');
-      overlay.classList.toggle('hidden');
-    }
-
-    // Dynamic CV File Download Trigger
-    function downloadCvText() {
-      const cvTextContent = `HASEEB MIRZA
-Accounts Receivable Supervisor | Credit Control Expert | UAE
-WhatsApp UAE: +971 50 725 6801 | Phone PK: +92 345 2104860
-Email: haseebmeerza@hotmail.com
-
-PROFESSIONAL SUMMARY:
-Senior finance professional with 17+ years in receivables and credit control for a multi-entity retail group in the UAE, including Oman operations. Managed 2,500+ accounts including Amazon, Walmart, Talabat, and Noon. Cut AR aging from 90+ to 60 days. Strong in month-end closing, audit reconciliations, and UAE VAT compliance.
-
-EXPERIENCE:
-1. Freelance Finance & Data Professional (Mar 2026 - Present)
-   - Manage AR follow-up, ledger reconciliation, and Power BI / Excel reporting.
-2. Accounts Receivable Supervisor — Al Mir Group (Jan 2018 - Feb 2026)
-   - Reduced AR aging from 90+ to 60 days. Led team of 4 for ERP deployment.
-3. Accounts Receivable & Payable Executive — Al Mir Group (May 2008 - Jan 2018)
-4. Retail Operation Associate — Junaid Jamshed (Jan 2006 - Jan 2008)
-
-EDUCATION & SKILLS:
-- Bachelor of Commerce (B.Com) - 2000
-- AR Management, Power BI, Advanced Excel, ERP Rollout, UAE VAT/FTA.`;
-
-      const blob = new Blob([cvTextContent], { type: 'text/plain' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = 'Haseeb_Mirza_AR_Supervisor_CV.txt';
-      link.click();
-    }
-  </script>
-</body>
-</html>
+          <!-- Card 2: Android Quiz App -->
+          <div onclick="switchPage('projects', document.querySelectorAll('.nav-btn')[2])" class="float-card bg-slate-900 border
