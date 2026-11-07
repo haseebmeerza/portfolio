@@ -1,200 +1,527 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Haseeb Mirza — Senior Finance & Full-Stack Professional</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { background: #0b0f19; color: #f3f4f6; font-family: system-ui, -apple-system, sans-serif; }
-    /* Floating Effect */
-    .float-card {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      animation: float 4s ease-in-out infinite;
+    /* Global Styling & Custom Animations */
+    body { 
+      background: #090d16; 
+      color: #f3f4f6; 
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; 
     }
-    .float-card:nth-child(2) { animation-delay: 1s; }
-    .float-card:nth-child(3) { animation-delay: 2s; }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-6px); }
+
+    /* Floating effect triggerable on hover or active class */
+    .float-hover {
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
     }
+    .float-hover:hover, .float-active {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px 2px rgba(59, 130, 246, 0.2);
+    }
+
+    /* Pulse float keyframes for menu selection */
+    @keyframes subtlePulseFloat {
+      0%, 100% { transform: translateY(-4px); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-menu-float {
+      animation: subtlePulseFloat 2s ease-in-out infinite;
+    }
+
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #090d16; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
   </style>
 </head>
-<body class="min-h-screen flex flex-col md:flex-row">
+<body class="min-h-screen flex flex-col md:flex-row overflow-x-hidden">
 
-  <!-- Left Side Professional Navigation Menu -->
-  <aside class="w-full md:w-64 bg-slate-900 border-r border-slate-800 p-6 flex flex-col justify-between shrink-0">
+  <!-- Mobile Top Header Bar -->
+  <header class="md:hidden bg-slate-900 border-b border-slate-800 p-4 flex justify-between items-center sticky top-0 z-40">
+    <div>
+      <h1 class="text-base font-bold text-white">Haseeb Mirza</h1>
+      <p class="text-[11px] text-blue-400">Finance & Developer</p>
+    </div>
+    <button onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white border border-slate-700">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Left Sidebar Navigation Menu -->
+  <aside id="sidebarMenu" class="fixed inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 w-72 bg-slate-900/95 backdrop-blur-md border-r border-slate-800 p-6 flex flex-col justify-between shrink-0 z-50 transition-transform duration-300 ease-in-out">
     <div class="space-y-8">
-      <div>
-        <h2 class="text-lg font-bold text-white tracking-wide">Haseeb Mirza</h2>
-        <p class="text-xs text-blue-400 font-medium mt-0.5">AR Supervisor & Developer</p>
+      <!-- Profile Branding -->
+      <div class="border-b border-slate-800 pb-5">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-600 to-emerald-400 flex items-center justify-center font-bold text-white text-lg shadow-md">
+            HM
+          </div>
+          <div>
+            <h2 class="text-base font-bold text-white tracking-wide">Haseeb Mirza</h2>
+            <p class="text-[11px] text-blue-400 font-medium">AR Supervisor & Dev</p>
+          </div>
+        </div>
       </div>
       
-      <nav class="space-y-1">
-        <a href="#overview" class="block px-3 py-2 text-xs font-medium rounded-lg bg-blue-600/10 text-blue-400 border border-blue-500/20">📊 Overview & KPIs</a>
-        <a href="#experience" class="block px-3 py-2 text-xs font-medium rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition">💼 Experience & CV</a>
-        <a href="#projects" class="block px-3 py-2 text-xs font-medium rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition">💻 Systems & Apps</a>
-        <a href="#contact" class="block px-3 py-2 text-xs font-medium rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition">📱 Contact & Channels</a>
+      <!-- Nav Links -->
+      <nav class="space-y-2">
+        <button onclick="navigateTo('overview', this)" id="nav-overview" class="nav-btn w-full flex items-center justify-between px-4 py-3 text-xs font-semibold rounded-xl bg-blue-600/20 text-blue-400 border border-blue-500/30 float-hover animate-menu-float">
+          <span class="flex items-center gap-2.5">
+            <span>📊</span> Executive Overview
+          </span>
+          <span class="text-[10px] opacity-75">➔</span>
+        </button>
+
+        <button onclick="navigateTo('cv-section', this)" id="nav-cv-section" class="nav-btn w-full flex items-center justify-between px-4 py-3 text-xs font-semibold rounded-xl text-slate-400 hover:bg-slate-800/80 hover:text-white border border-transparent float-hover">
+          <span class="flex items-center gap-2.5">
+            <span>💼</span> Full CV & Experience
+          </span>
+          <span class="text-[10px] opacity-75">➔</span>
+        </button>
+
+        <button onclick="navigateTo('projects', this)" id="nav-projects" class="nav-btn w-full flex items-center justify-between px-4 py-3 text-xs font-semibold rounded-xl text-slate-400 hover:bg-slate-800/80 hover:text-white border border-transparent float-hover">
+          <span class="flex items-center gap-2.5">
+            <span>💻</span> Apps & POS Systems
+          </span>
+          <span class="text-[10px] opacity-75">➔</span>
+        </button>
+
+        <button onclick="navigateTo('contact', this)" id="nav-contact" class="nav-btn w-full flex items-center justify-between px-4 py-3 text-xs font-semibold rounded-xl text-slate-400 hover:bg-slate-800/80 hover:text-white border border-transparent float-hover">
+          <span class="flex items-center gap-2.5">
+            <span>📱</span> Direct Contact & Channels
+          </span>
+          <span class="text-[10px] opacity-75">➔</span>
+        </button>
       </nav>
     </div>
 
-    <div class="text-[11px] text-slate-500 border-t border-slate-800 pt-4 mt-6">
-      <p class="font-semibold text-slate-400">Remote Availability</p>
-      <p class="mt-1">AR Management, Data Entry, Power BI & Excel Dashboards.</p>
+    <!-- Sidebar Bottom CV Download Action -->
+    <div class="space-y-3 border-t border-slate-800 pt-5">
+      <button onclick="openCvModal()" class="w-full flex items-center justify-center gap-2 py-2.5 px-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition shadow-lg shadow-emerald-900/30 float-hover">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>
+        Download Full CV (PDF)
+      </button>
+
+      <div class="text-[11px] text-slate-500 text-center">
+        <p class="text-slate-400 font-semibold">Available for Remote Work</p>
+        <p class="text-[10px]">UAE & Global Clients</p>
+      </div>
     </div>
   </aside>
 
-  <!-- Main Content Area -->
-  <main class="flex-1 p-6 md:p-12 overflow-y-auto space-y-10 max-w-5xl">
+  <!-- Overlay for Mobile Menu -->
+  <div id="mobileOverlay" onclick="toggleMobileMenu()" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-40 md:hidden"></div>
 
-    <!-- Header Section with Realistic Visual Context -->
-    <header id="overview" class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 bg-slate-900/60 border border-slate-800 p-6 rounded-2xl backdrop-blur-sm">
-      <div class="space-y-2">
-        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-          🟢 Available for Remote Projects
-        </div>
-        <h1 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Haseeb Mirza</h1>
-        <p class="text-sm text-slate-400 max-w-xl">
-          Accounts Receivable Supervisor with 17+ years managing 2,500+ global accounts (Amazon, Walmart, Noon, Talabat) and driving automated full-stack workflow solutions.
-        </p>
+  <!-- Main Display Area -->
+  <main class="flex-1 p-4 md:p-10 overflow-y-auto space-y-8 max-w-6xl mx-auto">
+
+    <!-- Top Floating Back to Main Menu Bar (Visible when navigating sections) -->
+    <div id="backToMenuContainer" class="hidden sticky top-4 z-30 flex justify-between items-center bg-blue-950/90 border border-blue-600/40 p-3.5 rounded-2xl shadow-xl backdrop-blur-md">
+      <div class="flex items-center gap-2 text-xs font-semibold text-blue-200">
+        <span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
+        <span>Viewing Detail View</span>
       </div>
-      <!-- Realistic Professional Graphic Avatar -->
-      <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&q=80&w=300" alt="Finance Dashboard Workspace" class="w-28 h-28 object-cover rounded-xl border border-slate-700 shadow-lg shrink-0">
-    </header>
+      <button onclick="navigateTo('overview', document.getElementById('nav-overview'))" class="flex items-center gap-2 px-4 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl shadow-md transition float-hover">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        Back to Main Menu
+      </button>
+    </div>
 
-    <!-- Interactive Floating KPI Cards (Color changing on click) -->
-    <section class="space-y-4">
+    <!-- EXECUTIVE OVERVIEW SECTION -->
+    <section id="overview" class="section-block space-y-8">
+      
+      <!-- Main Profile Banner Card -->
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 bg-slate-900/80 border border-slate-800 p-6 md:p-8 rounded-3xl shadow-xl relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="space-y-3 max-w-2xl relative z-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            17+ Years Finance & Tech Leadership
+          </div>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">Haseeb Mirza</h1>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Accounts Receivable Supervisor & Credit Control Expert managing <strong class="text-white">2,500+ global accounts</strong> (Amazon, Walmart, Noon, Talabat). Full-Stack developer creating automated POS applications, mobile APKs, and cloud business tools.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-3">
+            <button onclick="navigateTo('cv-section', document.getElementById('nav-cv-section'))" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-semibold border border-slate-700 float-hover">
+              Explore Resume & Experience ➔
+            </button>
+            <button onclick="openCvModal()" class="px-4 py-2 bg-emerald-950/60 hover:bg-emerald-900/80 text-emerald-300 rounded-xl text-xs font-semibold border border-emerald-800 float-hover">
+              📄 View PDF CV
+            </button>
+          </div>
+        </div>
+
+        <!-- Professional Context Avatar & Info -->
+        <div class="relative group shrink-0">
+          <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&q=80&w=350" alt="Finance Dashboard Workspace" class="w-32 h-32 md:w-36 md:h-36 object-cover rounded-2xl border-2 border-slate-700 shadow-2xl float-hover">
+          <div class="absolute inset-0 bg-slate-900/30 rounded-2xl group-hover:bg-transparent transition"></div>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE FLOATING & COLOR-CHANGING KPI CARDS -->
+      <div class="space-y-3">
+        <div class="flex justify-between items-center">
+          <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Core Performance Metrics</h2>
+          <span class="text-[11px] text-blue-400 font-medium">💡 Move mouse or click card to float & change colors</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <!-- KPI Card 1 -->
+          <div onclick="cycleCardColor(this)" class="kpi-card float-hover bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg cursor-pointer select-none" data-state="0">
+            <div class="flex justify-between items-start">
+              <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wide">AR Aging Optimization</span>
+              <span class="text-xs">📉</span>
+            </div>
+            <h3 class="text-2xl font-black text-white mt-2">90+ ➔ 60 Days</h3>
+            <p class="text-[11px] text-emerald-400 mt-2 font-medium">Al Mir Group Operations</p>
+          </div>
+
+          <!-- KPI Card 2 -->
+          <div onclick="cycleCardColor(this)" class="kpi-card float-hover bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg cursor-pointer select-none" data-state="0">
+            <div class="flex justify-between items-start">
+              <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wide">Account Portfolio</span>
+              <span class="text-xs">🌐</span>
+            </div>
+            <h3 class="text-2xl font-black text-white mt-2">2,500+ Active</h3>
+            <p class="text-[11px] text-blue-400 mt-2 font-medium">Amazon, Noon, Talabat</p>
+          </div>
+
+          <!-- KPI Card 3 -->
+          <div onclick="cycleCardColor(this)" class="kpi-card float-hover bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg cursor-pointer select-none" data-state="0">
+            <div class="flex justify-between items-start">
+              <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wide">Systems & Leadership</span>
+              <span class="text-xs">⚡</span>
+            </div>
+            <h3 class="text-2xl font-black text-white mt-2">17+ Years</h3>
+            <p class="text-[11px] text-purple-400 mt-2 font-medium">Credit Control & ERP Rollout</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- FULL CV & WORK EXPERIENCE SECTION -->
+    <section id="cv-section" class="section-block space-y-6">
+      
+      <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-xl relative">
+        <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b border-slate-800 pb-5">
+          <div>
+            <h2 class="text-xl font-bold text-white">Curriculum Vitae & Professional History</h2>
+            <p class="text-xs text-slate-400">Senior Finance Executive & Remote Data Dashboard Architect</p>
+          </div>
+          
+          <div class="flex gap-2">
+            <button onclick="openCvModal()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl shadow-md transition float-hover flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+              View Document
+            </button>
+          </div>
+        </div>
+
+        <!-- Experience Timeline -->
+        <div class="space-y-8 text-xs text-slate-300 pt-2">
+          
+          <!-- Experience Item 1 -->
+          <div class="relative pl-6 border-l-2 border-blue-500 space-y-2 float-hover p-4 rounded-2xl bg-slate-800/40 border border-slate-800">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-1">
+              <h3 class="font-bold text-white text-sm">Freelance Finance & Data Professional</h3>
+              <span class="text-emerald-400 font-mono text-[11px] bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800">Mar 2026 – Present</span>
+            </div>
+            <p class="text-slate-300 font-medium">Independent / Remote | UAE & Global</p>
+            <ul class="list-disc list-inside space-y-1 text-slate-400 text-[11px]">
+              <li>Manage accounts receivable follow-up, ledger reconciliation, and data entry remotely for SMBs.</li>
+              <li>Build Power BI and advanced Excel dashboards tracking receivables, aging trends, and cash flow.</li>
+              <li>Clean up client ledgers and streamline billing processes, boosting data accuracy.</li>
+            </ul>
+          </div>
+
+          <!-- Experience Item 2 -->
+          <div class="relative pl-6 border-l-2 border-emerald-500 space-y-2 float-hover p-4 rounded-2xl bg-slate-800/40 border border-slate-800">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-1">
+              <h3 class="font-bold text-white text-sm">Accounts Receivable Supervisor</h3>
+              <span class="text-slate-400 font-mono text-[11px] bg-slate-800 px-2 py-0.5 rounded border border-slate-700">Jan 2018 – Feb 2026</span>
+            </div>
+            <p class="text-slate-300 font-medium">Al Mir Group of Companies | UAE & Oman Operations</p>
+            <ul class="list-disc list-inside space-y-1 text-slate-400 text-[11px]">
+              <li>Cut AR aging from 90+ down to 60 days through structured weekly debtor reviews and automated collection workflows.</li>
+              <li>Led a team of 4 to deploy the group's in-house ERP, improving dispute resolution for 2,500+ accounts.</li>
+              <li>Managed high-volume key accounts including Amazon, Walmart, Talabat, and Noon.</li>
+              <li>Supervised 3 AR staff, maintained 100% compliance with UAE VAT/FTA regulations, and managed audit reconciliations.</li>
+            </ul>
+          </div>
+
+          <!-- Experience Item 3 -->
+          <div class="relative pl-6 border-l-2 border-purple-500 space-y-2 float-hover p-4 rounded-2xl bg-slate-800/40 border border-slate-800">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-1">
+              <h3 class="font-bold text-white text-sm">Accounts Receivable & Payable Executive</h3>
+              <span class="text-slate-400 font-mono text-[11px] bg-slate-800 px-2 py-0.5 rounded border border-slate-700">May 2008 – Jan 2018</span>
+            </div>
+            <p class="text-slate-300 font-medium">Al Mir Group of Companies | UAE</p>
+            <ul class="list-disc list-inside space-y-1 text-slate-400 text-[11px]">
+              <li>Handled end-to-end invoice issuance, payment posting, utility payments, and monthly rental income reconciliations.</li>
+              <li>Supported month-end and year-end closing, journal entries, accruals, and internal/external audit schedules.</li>
+            </ul>
+          </div>
+
+          <!-- Experience Item 4 -->
+          <div class="relative pl-6 border-l-2 border-amber-500 space-y-2 float-hover p-4 rounded-2xl bg-slate-800/40 border border-slate-800">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-1">
+              <h3 class="font-bold text-white text-sm">Retail Operation Associate</h3>
+              <span class="text-slate-400 font-mono text-[11px] bg-slate-800 px-2 py-0.5 rounded border border-slate-700">Jan 2006 – Jan 2008</span>
+            </div>
+            <p class="text-slate-300 font-medium">Junaid Jamshed (Pvt.) Ltd. | Pakistan</p>
+            <ul class="list-disc list-inside space-y-1 text-slate-400 text-[11px]">
+              <li>Led the Candela POS rollout across 13 cities, standardizing accounting, inventory, and sales workflows.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- APPS & POS PROJECTS SECTION -->
+    <section id="projects" class="section-block space-y-6">
       <div class="flex justify-between items-center">
-        <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Core Performance Metrics (Click to Cycle Color)</h2>
-        <span class="text-[11px] text-slate-500">Interactive Floating Cards</span>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <!-- KPI Card 1 -->
-        <div onclick="cycleCardColor(this)" class="float-card bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg cursor-pointer select-none" data-state="0">
-          <p class="text-[11px] font-medium text-slate-400 uppercase">AR Aging Reduction</p>
-          <h3 class="text-2xl font-black text-white mt-1">90+ ➔ 60 Days</h3>
-          <p class="text-[11px] text-emerald-400 mt-2">Al Mir Group Operations</p>
-        </div>
-
-        <!-- KPI Card 2 -->
-        <div onclick="cycleCardColor(this)" class="float-card bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg cursor-pointer select-none" data-state="0">
-          <p class="text-[11px] font-medium text-slate-400 uppercase">Portfolio Scale</p>
-          <h3 class="text-2xl font-black text-white mt-1">2,500+ Accounts</h3>
-          <p class="text-[11px] text-blue-400 mt-2">Amazon, Noon, Talabat</p>
-        </div>
-
-        <!-- KPI Card 3 -->
-        <div onclick="cycleCardColor(this)" class="float-card bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg cursor-pointer select-none" data-state="0">
-          <p class="text-[11px] font-medium text-slate-400 uppercase">Experience Track</p>
-          <h3 class="text-2xl font-black text-white mt-1">17+ Years</h3>
-          <p class="text-[11px] text-purple-400 mt-2">Credit Control & ERP Deploy</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Professional CV Summary -->
-    <section id="experience" class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-6">
-      <div class="flex justify-between items-center border-b border-slate-800 pb-4">
-        <h2 class="text-sm font-bold text-white uppercase tracking-wider">Professional Work Experience</h2>
-        <span class="text-xs text-blue-400 font-mono">UAE & Pakistan Operations</span>
-      </div>
-
-      <div class="space-y-6 text-xs text-slate-300">
-        <!-- Role 1 -->
-        <div class="border-l-2 border-blue-500 pl-4 space-y-2">
-          <div class="flex flex-col sm:flex-row justify-between sm:items-center">
-            <h3 class="font-bold text-white text-sm">Freelance Finance & Data Professional</h3>
-            <span class="text-slate-500 font-mono text-[11px]">Mar 2026 – Present</span>
-          </div>
-          <p class="text-slate-400">Managing accounts receivable follow-up, ledger reconciliations, and building automated Power BI / Excel dashboards for remote businesses.</p>
-        </div>
-
-        <!-- Role 2 -->
-        <div class="border-l-2 border-slate-700 pl-4 space-y-2">
-          <div class="flex flex-col sm:flex-row justify-between sm:items-center">
-            <h3 class="font-bold text-white text-sm">Accounts Receivable Supervisor — Al Mir Group</h3>
-            <span class="text-slate-500 font-mono text-[11px]">Jan 2018 – Feb 2026</span>
-          </div>
-          <p class="text-slate-400">Cut AR aging from 90+ to 60 days, led a team of 4 to deploy the group's in-house ERP, managed high-volume ledgers for Amazon, Walmart, Talabat, and Noon, and ensured 100% audit-ready UAE VAT compliance.</p>
-        </div>
-
-        <!-- Role 3 -->
-        <div class="border-l-2 border-slate-700 pl-4 space-y-2">
-          <div class="flex flex-col sm:flex-row justify-between sm:items-center">
-            <h3 class="font-bold text-white text-sm">Retail Operation Associate — Junaid Jamshed (Pvt.) Ltd.</h3>
-            <span class="text-slate-500 font-mono text-[11px]">Jan 2006 – Jan 2008</span>
-          </div>
-          <p class="text-slate-400">Led the Candela POS rollout across 13 cities, standardizing accounting procedures, stock verification, and inventory auditing workflows.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Technical Systems & Apps -->
-    <section id="projects" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- Card A -->
-      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-4">
         <div>
-          <div class="flex justify-between items-center mb-2">
-            <h3 class="font-bold text-white text-sm">POS & Daily Planner System</h3>
-            <span class="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-bold">Live POS</span>
-          </div>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Enterprise management dashboard with role-based permissions, geolocation attendance logging, and serverless Google Sheets database synchronization via Apps Script.
-          </p>
-        </div>
-        <div class="flex gap-1.5 pt-2">
-          <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700">HTML5/Tailwind</span>
-          <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700">Google Apps Script</span>
+          <h2 class="text-lg font-bold text-white">Full-Stack Systems & Mobile APKs</h2>
+          <p class="text-xs text-slate-400">Custom business software and automated deployment pipelines</p>
         </div>
       </div>
 
-      <!-- Card B -->
-      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-4">
-        <div>
-          <div class="flex justify-between items-center mb-2">
-            <h3 class="font-bold text-white text-sm">Mobile APK Pipelines (Capacitor)</h3>
-            <span class="text-[10px] bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded font-bold">CI/CD Automation</span>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Project Card 1 -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between space-y-5 float-hover shadow-xl">
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <h3 class="font-bold text-white text-base">Live POS & Daily Planner System</h3>
+              <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-2.5 py-0.5 rounded-full font-bold">LIVE PRODUCTION</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Full-featured business portal featuring role-based dashboards (Manager vs Team), GPS-stamped attendance logging, automated CSV reporting, and continuous sync with Google Apps Script databases.
+            </p>
           </div>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Configuring automated GitHub Actions workflows to compile cross-platform testing applications and educational quizzes directly into ready-to-install Android APKs.
-          </p>
+          <div class="flex flex-wrap gap-1.5 pt-2 border-t border-slate-800/60">
+            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded-lg border border-slate-700">Tailwind CSS</span>
+            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded-lg border border-slate-700">Google Apps Script</span>
+            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded-lg border border-slate-700">JavaScript ES6</span>
+          </div>
         </div>
-        <div class="flex gap-1.5 pt-2">
-          <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700">Capacitor 6</span>
-          <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700">GitHub Actions</span>
+
+        <!-- Project Card 2 -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between space-y-5 float-hover shadow-xl">
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <h3 class="font-bold text-white text-base">MCQ-Quiz Android App & Pipeline</h3>
+              <span class="text-[10px] bg-blue-950 text-blue-400 border border-blue-800 px-2.5 py-0.5 rounded-full font-bold">CAPACITOR APK</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Cross-platform testing platform utilizing Capacitor 6 with automated GitHub Actions CI/CD workflows for instant APK compilation, offline state management, and localized Urdu Nastaliq typography.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-1.5 pt-2 border-t border-slate-800/60">
+            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded-lg border border-slate-700">Capacitor 6</span>
+            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded-lg border border-slate-700">GitHub Actions</span>
+            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded-lg border border-slate-700">Android SDK</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DIRECT CONTACT & CHANNELS SECTION -->
+    <section id="contact" class="section-block space-y-6">
+      <div class="bg-gradient-to-br from-slate-900 via-slate-900 to-blue-950 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-2xl">
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="text-xl font-bold text-white">Direct Contact Channels</h2>
+          <p class="text-xs text-slate-400">Reach out for remote finance supervision, Power BI projects, or custom web/mobile applications.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+          <!-- Contact 1 -->
+          <a href="tel:+923452104860" class="float-hover p-4 bg-slate-800/80 border border-slate-700 rounded-2xl flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center text-lg font-bold">
+              📱
+            </div>
+            <div>
+              <p class="text-[10px] font-bold text-slate-400 uppercase">Pakistan Phone / WhatsApp</p>
+              <p class="text-xs font-bold text-white mt-0.5">+92 345 2104860</p>
+            </div>
+          </a>
+
+          <!-- Contact 2 -->
+          <a href="https://wa.me/971507256801" target="_blank" class="float-hover p-4 bg-slate-800/80 border border-slate-700 rounded-2xl flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-lg font-bold">
+              💬
+            </div>
+            <div>
+              <p class="text-[10px] font-bold text-slate-400 uppercase">UAE Phone / WhatsApp</p>
+              <p class="text-xs font-bold text-white mt-0.5">+971 50 725 6801</p>
+            </div>
+          </a>
+
+          <!-- Contact 3 -->
+          <a href="mailto:haseebmeerza@hotmail.com" class="float-hover p-4 bg-slate-800/80 border border-slate-700 rounded-2xl flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-purple-600/20 text-purple-400 flex items-center justify-center text-lg font-bold">
+              ✉️
+            </div>
+            <div>
+              <p class="text-[10px] font-bold text-slate-400 uppercase">Email Address</p>
+              <p class="text-xs font-bold text-white mt-0.5">haseebmeerza@hotmail.com</p>
+            </div>
+          </a>
+
         </div>
       </div>
     </section>
 
-    <!-- Contact Footer -->
-    <footer id="contact" class="border-t border-slate-800 pt-6 text-xs text-slate-400 flex flex-col sm:flex-row justify-between items-center gap-4">
-      <p>© 2026 Haseeb Mirza. All rights reserved.</p>
-      <div class="flex flex-wrap gap-4 font-medium">
-        <a href="tel:+923452104860" class="text-blue-400 hover:underline">📱 PK: +92 345 2104860</a>
-        <a href="tel:+971507256801" class="text-emerald-400 hover:underline">📱 UAE: +971 50 725 6801</a>
-        <a href="mailto:haseebmeerza@hotmail.com" class="text-slate-300 hover:underline">✉️ haseebmeerza@hotmail.com</a>
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 pt-6 text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-3">
+      <p>© 2026 Haseeb Mirza. Designed for performance and reliability.</p>
+      <div class="flex gap-4">
+        <button onclick="navigateTo('overview', document.getElementById('nav-overview'))" class="hover:text-blue-400 transition">Back to Top</button>
       </div>
     </footer>
 
   </main>
 
-  <!-- Color Cycling Script for Floating KPI Cards -->
+  <!-- MODAL: EMBEDDED CV VIEWER AND DOWNLOAD -->
+  <div id="cvModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 w-full max-w-4xl h-[90vh] rounded-3xl flex flex-col shadow-2xl overflow-hidden animate-menu-float" style="animation-duration: 0.3s; animation-iteration-count: 1;">
+      
+      <!-- Modal Header -->
+      <div class="p-4 bg-slate-800 border-b border-slate-700 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <span class="text-xl">📄</span>
+          <div>
+            <h3 class="text-sm font-bold text-white">Haseeb Mirza - AR Supervisor & Data CV</h3>
+            <p class="text-[11px] text-slate-400">PDF Document Preview</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <!-- Direct File Download Trigger -->
+          <a href="data:application/pdf;base64,JVBERi0xLjQKJ..." download="Haseeb_Mirza_AR_Supervisor_CV.pdf" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            Download PDF
+          </a>
+          <button onclick="closeCvModal()" class="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-700">
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body Text Viewer (Scrollable Copy) -->
+      <div class="flex-1 p-6 overflow-y-auto space-y-6 text-xs text-slate-300 bg-slate-950">
+        <div class="border-b border-slate-800 pb-4">
+          <h1 class="text-2xl font-bold text-white">HASEEB MIRZA</h1>
+          <p class="text-blue-400 font-semibold">Accounts Receivable Supervisor | Credit Control Expert | UAE</p>
+          <p class="text-slate-400 text-[11px] mt-1">WhatsApp: +971 50 725 6801 | +92 345 2104860 | Email: haseebmeerza@hotmail.com</p>
+        </div>
+
+        <div>
+          <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Professional Summary</h2>
+          <p class="leading-relaxed">Senior finance professional with 17+ years in receivables and credit control for a multi-entity retail group in the UAE, including Oman operations. Managed 2,500+ accounts, including high-volume customers like Amazon, Walmart, Talabat, and Noon. Brought AR aging down from 90+ to 60 days through weekly reviews and automated workflows. Strong in month-end closing, audit reconciliations, and UAE VAT/FTA compliance with Power BI & Excel reporting.</p>
+        </div>
+
+        <div>
+          <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Key Competencies</h2>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="bg-slate-800 px-2 py-1 rounded text-[11px]">Accounts Receivable</span>
+            <span class="bg-slate-800 px-2 py-1 rounded text-[11px]">Credit Risk Management</span>
+            <span class="bg-slate-800 px-2 py-1 rounded text-[11px]">Power BI & Excel Dashboards</span>
+            <span class="bg-slate-800 px-2 py-1 rounded text-[11px]">UAE VAT Compliance</span>
+            <span class="bg-slate-800 px-2 py-1 rounded text-[11px]">ERP Rollout</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SCRIPT FOR DYNAMIC FLOATING AND NAVIGATION LOGIC -->
   <script>
+    // Cycle background colors and floating highlight on metric cards
     function cycleCardColor(card) {
-      const states = [
+      const colorSchemes = [
         { bg: 'bg-slate-900', border: 'border-slate-800', text: 'text-white' },
-        { bg: 'bg-blue-950/80', border: 'border-blue-700/50', text: 'text-blue-200' },
-        { bg: 'bg-emerald-950/80', border: 'border-emerald-700/50', text: 'text-emerald-200' },
-        { bg: 'bg-purple-950/80', border: 'border-purple-700/50', text: 'text-purple-200' }
+        { bg: 'bg-blue-950/90', border: 'border-blue-600/60', text: 'text-blue-200' },
+        { bg: 'bg-emerald-950/90', border: 'border-emerald-600/60', text: 'text-emerald-200' },
+        { bg: 'bg-purple-950/90', border: 'border-purple-600/60', text: 'text-purple-200' }
       ];
       
       let currentState = parseInt(card.getAttribute('data-state')) || 0;
-      currentState = (currentState + 1) % states.length;
+      currentState = (currentState + 1) % colorSchemes.length;
       card.setAttribute('data-state', currentState);
 
-      // Reset classes
-      card.className = "float-card rounded-xl p-5 shadow-lg cursor-pointer select-none transition-all duration-300 " + states[currentState].bg + " " + states[currentState].border;
+      // Apply float active class along with color cycle
+      card.className = `kpi-card float-hover float-active ${colorSchemes[currentState].bg} border ${colorSchemes[currentState].border} rounded-2xl p-5 shadow-2xl cursor-pointer select-none`;
+    }
+
+    // Dynamic Navigation and Floating State for Sidebar Buttons
+    function navigateTo(sectionId, btnElement) {
+      // Scroll to section smoothly
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Update Menu Button Styles & Animations
+      const navButtons = document.querySelectorAll('.nav-btn');
+      navButtons.forEach(btn => {
+        btn.classList.remove('bg-blue-600/20', 'text-blue-400', 'border-blue-500/30', 'animate-menu-float', 'float-active');
+        btn.classList.add('text-slate-400', 'border-transparent');
+      });
+
+      if (btnElement) {
+        btnElement.classList.remove('text-slate-400', 'border-transparent');
+        btnElement.classList.add('bg-blue-600/20', 'text-blue-400', 'border-blue-500/30', 'animate-menu-float', 'float-active');
+      }
+
+      // Toggle Floating Back Button Bar
+      const backContainer = document.getElementById('backToMenuContainer');
+      if (sectionId !== 'overview') {
+        backContainer.classList.remove('hidden');
+      } else {
+        backContainer.classList.add('hidden');
+      }
+
+      // Close Mobile Menu if open
+      const sidebar = document.getElementById('sidebarMenu');
+      const overlay = document.getElementById('mobileOverlay');
+      if (!sidebar.classList.contains('-translate-x-full')) {
+        sidebar.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+      }
+    }
+
+    // Toggle Mobile Navigation Drawer
+    function toggleMobileMenu() {
+      const sidebar = document.getElementById('sidebarMenu');
+      const overlay = document.getElementById('mobileOverlay');
+      sidebar.classList.toggle('-translate-x-full');
+      overlay.classList.toggle('hidden');
+    }
+
+    // CV Modal Handlers
+    function openCvModal() {
+      document.getElementById('cvModal').classList.remove('hidden');
+    }
+    function closeCvModal() {
+      document.getElementById('cvModal').classList.add('hidden');
     }
   </script>
 </body>
