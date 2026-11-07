@@ -128,149 +128,127 @@
     <!-- VIEW 1: EXECUTIVE OVERVIEW (MAIN MENU HOME PAGE) -->
     <section id="overview" class="view-page space-y-8">
       
-      <!-- Top Layout Grid: Banner Image on Left, Stacked KPI Cards on Right -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+      <!-- Banner & KPI Dashboard Section (Uncropped Full Image + KPI Cards) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
-        <!-- Left Side: Professional Service Banner Graphic -->
-        <div class="lg:col-span-7 bg-slate-900/90 border border-slate-800 rounded-3xl p-4 md:p-6 shadow-2xl flex flex-col justify-between relative overflow-hidden float-hover">
-          <div class="relative z-10 space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                ACCURATE | RELIABLE | PROFESSIONAL
-              </span>
-              <span class="text-xs text-amber-400 font-mono font-bold">UAE & Remote</span>
-            </div>
-            
-            <div class="space-y-1">
-              <h1 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Haseeb Mirza</h1>
-              <p class="text-xs font-bold text-amber-400 uppercase tracking-widest">Accounting & Bookkeeping Professional</p>
-            </div>
-
-            <p class="text-xs text-slate-300 leading-relaxed">
-              Senior AR Supervisor & Credit Control Expert managing <strong class="text-white">2,500+ global client accounts</strong> (Amazon, Walmart, Noon, Talabat). Specialized in aging reduction, customer reconciliations, and custom cloud-connected POS/Power BI dashboards.
-            </p>
+        <!-- Left Side: Uncropped Complete Banner Display -->
+        <div class="lg:col-span-7 bg-slate-900/90 border border-slate-800 rounded-3xl p-4 md:p-6 shadow-2xl overflow-hidden flex flex-col justify-center items-center float-hover">
+          <div class="w-full flex justify-between items-center mb-3 px-1">
+            <span class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Available for Remote Work
+            </span>
+            <span class="text-[11px] font-mono text-amber-400 font-medium">UAE & Worldwide</span>
           </div>
-
-          <!-- Banner Visual / Image Container -->
-          <div class="mt-4 relative rounded-2xl overflow-hidden border border-slate-700/80 shadow-lg bg-slate-950">
-            <img src="Banner.2.png" alt="Haseeb Mirza Accounting & Bookkeeping Services" class="w-full h-auto max-h-72 object-cover object-top" onerror="this.onerror=null; this.src='banner.jfif';">
+          
+          <!-- Full Uncropped Responsive Banner Image -->
+          <div class="w-full flex justify-center items-center bg-slate-950/60 rounded-2xl p-2 border border-slate-800/80">
+            <img 
+              src="Banner.2.png" 
+              alt="Haseeb Mirza Accounting & Bookkeeping Services Banner" 
+              class="w-full h-auto max-h-[550px] object-contain rounded-xl shadow-lg block" 
+              onerror="this.onerror=null; this.src='banner.jfif';"
+            >
           </div>
         </div>
 
-        <!-- Right Side: Stacked Interactive KPI Cards -->
-        <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
-          <div class="flex justify-between items-center px-1">
-            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">All Key Performance Indicators</h2>
-            <span class="text-[10px] text-amber-400">💡 Click card to shift color</span>
+        <!-- Right Side: Clean Stacked Interactive KPI Cards -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="flex justify-between items-center">
+            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Key Performance Metrics</h2>
+            <span class="text-[10px] text-blue-400 font-medium">💡 Click to cycle colors</span>
           </div>
 
-          <!-- Stacked KPI Card 1 -->
-          <div onclick="cycleCardColor(this)" class="kpi-card float-hover bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-lg cursor-pointer select-none flex-1 flex flex-col justify-between" data-state="0">
-            <div class="flex justify-between items-center">
-              <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wide">AR Aging Optimization</span>
-              <span class="text-xs">📉</span>
+          <div class="space-y-4">
+            <!-- KPI Card 1 -->
+            <div onclick="cycleCardColor(this)" class="kpi-card float-hover bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg cursor-pointer select-none" data-state="0">
+              <div class="flex justify-between items-start">
+                <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wide">AR Aging Optimization</span>
+                <span class="text-xs">📉</span>
+              </div>
+              <h3 class="text-2xl font-black text-white mt-2">90+ ➔ 60 Days</h3>
+              <p class="text-[11px] text-emerald-400 mt-2 font-medium">Practical Operations</p>
             </div>
-            <h3 class="text-2xl font-black text-white mt-1">90+ ➔ 60 Days</h3>
-            <p class="text-[11px] text-emerald-400 font-medium">Practical Operations Impact</p>
-          </div>
 
-          <!-- Stacked KPI Card 2 -->
-          <div onclick="cycleCardColor(this)" class="kpi-card float-hover bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-lg cursor-pointer select-none flex-1 flex flex-col justify-between" data-state="0">
-            <div class="flex justify-between items-center">
-              <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wide">Account Portfolio Scale</span>
-              <span class="text-xs">🌐</span>
+            <!-- KPI Card 2 -->
+            <div onclick="cycleCardColor(this)" class="kpi-card float-hover bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg cursor-pointer select-none" data-state="0">
+              <div class="flex justify-between items-start">
+                <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wide">Account Portfolio Scale</span>
+                <span class="text-xs">🌐</span>
+              </div>
+              <h3 class="text-2xl font-black text-white mt-2">2,500+ Ledgers</h3>
+              <p class="text-[11px] text-blue-400 mt-2 font-medium">Amazon, Noon, Talabat</p>
             </div>
-            <h3 class="text-2xl font-black text-white mt-1">2,500+ Active Ledgers</h3>
-            <p class="text-[11px] text-blue-400 font-medium">Amazon, Walmart, Noon, Talabat</p>
-          </div>
 
-          <!-- Stacked KPI Card 3 -->
-          <div onclick="cycleCardColor(this)" class="kpi-card float-hover bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-lg cursor-pointer select-none flex-1 flex flex-col justify-between" data-state="0">
-            <div class="flex justify-between items-center">
-              <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wide">Leadership & ERP Track</span>
-              <span class="text-xs">⚡</span>
+            <!-- KPI Card 3 -->
+            <div onclick="cycleCardColor(this)" class="kpi-card float-hover bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg cursor-pointer select-none" data-state="0">
+              <div class="flex justify-between items-start">
+                <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wide">Systems & Leadership</span>
+                <span class="text-xs">⚡</span>
+              </div>
+              <h3 class="text-2xl font-black text-white mt-2">17+ Years</h3>
+              <p class="text-[11px] text-purple-400 mt-2 font-medium">Credit Control & ERP Rollout</p>
             </div>
-            <h3 class="text-2xl font-black text-white mt-1">17+ Years Expertise</h3>
-            <p class="text-[11px] text-purple-400 font-medium">Credit Control & ERP Deployments</p>
           </div>
         </div>
 
       </div>
 
-      <!-- Application Skills & Interactive Dashboard Modules Grid -->
+      <!-- Application Skills Dashboard Grid -->
       <div class="space-y-4 pt-2">
         <div class="flex justify-between items-center">
-          <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Application Skills & Systems Modules</h2>
-          <span class="text-[11px] text-slate-500">Interactive System Launchers</span>
+          <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Application Skills & Custom Tools</h2>
+          <span class="text-[11px] text-slate-500">Interactive Modules</span>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          
-          <!-- Module Card 1: Live POS System -->
-          <div onclick="switchView('projects', document.getElementById('nav-projects'))" class="float-hover bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-lg cursor-pointer select-none space-y-3 flex flex-col justify-between">
+          <!-- Application Skill 1: Live POS -->
+          <div onclick="switchView('projects', document.getElementById('nav-projects'))" class="float-hover bg-slate-900 border border-slate-800 rounded-2xl p-5 cursor-pointer select-none flex flex-col justify-between space-y-3 shadow-lg">
             <div class="flex justify-between items-center">
-              <div class="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-base">🛒</div>
-              <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-bold uppercase">LIVE</span>
+              <span class="text-lg">🛒</span>
+              <span class="text-[9px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded">LIVE</span>
             </div>
             <div>
-              <h3 class="font-bold text-white text-sm">LIVE POS SYSTEM</h3>
-              <p class="text-[11px] text-slate-400 mt-1 leading-normal">Manage sales, real-time inventory & GPS attendance with Google Sheets backend.</p>
-            </div>
-            <div class="flex items-center justify-between text-[11px] text-blue-400 pt-2 border-t border-slate-800/60 font-medium">
-              <span>View System</span>
-              <span>➔</span>
+              <h3 class="text-sm font-bold text-white">Live POS System</h3>
+              <p class="text-[11px] text-slate-400 mt-1 leading-snug">Sales, inventory & GPS attendance tracking.</p>
             </div>
           </div>
 
-          <!-- Module Card 2: Android Quiz App -->
-          <div onclick="switchView('projects', document.getElementById('nav-projects'))" class="float-hover bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-lg cursor-pointer select-none space-y-3 flex flex-col justify-between">
+          <!-- Application Skill 2: Android Quiz App -->
+          <div onclick="switchView('projects', document.getElementById('nav-projects'))" class="float-hover bg-slate-900 border border-slate-800 rounded-2xl p-5 cursor-pointer select-none flex flex-col justify-between space-y-3 shadow-lg">
             <div class="flex justify-between items-center">
-              <div class="w-9 h-9 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-base">📱</div>
-              <span class="text-[9px] bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded font-bold uppercase">APK BUILD</span>
+              <span class="text-lg">📱</span>
+              <span class="text-[9px] font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded">APK</span>
             </div>
             <div>
-              <h3 class="font-bold text-white text-sm">ANDROID QUIZ APP</h3>
-              <p class="text-[11px] text-slate-400 mt-1 leading-normal">Capacitor cross-platform build with GitHub Actions automated CI/CD pipeline.</p>
-            </div>
-            <div class="flex items-center justify-between text-[11px] text-purple-400 pt-2 border-t border-slate-800/60 font-medium">
-              <span>View Pipeline</span>
-              <span>➔</span>
+              <h3 class="text-sm font-bold text-white">Android Quiz App</h3>
+              <p class="text-[11px] text-slate-400 mt-1 leading-snug">Capacitor APK & GitHub Actions pipeline.</p>
             </div>
           </div>
 
-          <!-- Module Card 3: Financial Dashboard -->
-          <div onclick="switchView('cv-section', document.getElementById('nav-cv-section'))" class="float-hover bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-lg cursor-pointer select-none space-y-3 flex flex-col justify-between">
+          <!-- Application Skill 3: Financial Dashboard -->
+          <div onclick="switchView('cv-section', document.getElementById('nav-cv-section'))" class="float-hover bg-slate-900 border border-slate-800 rounded-2xl p-5 cursor-pointer select-none flex flex-col justify-between space-y-3 shadow-lg">
             <div class="flex justify-between items-center">
-              <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-base">📊</div>
-              <span class="text-[9px] bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded font-bold uppercase">POWER BI</span>
+              <span class="text-lg">📊</span>
+              <span class="text-[9px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded">BI</span>
             </div>
             <div>
-              <h3 class="font-bold text-white text-sm">FINANCIAL DASHBOARD</h3>
-              <p class="text-[11px] text-slate-400 mt-1 leading-normal">Track 2,500+ AR accounts, aging trends & cash flow reconciliations.</p>
-            </div>
-            <div class="flex items-center justify-between text-[11px] text-amber-400 pt-2 border-t border-slate-800/60 font-medium">
-              <span>View Reports</span>
-              <span>➔</span>
+              <h3 class="text-sm font-bold text-white">Financial Dashboard</h3>
+              <p class="text-[11px] text-slate-400 mt-1 leading-snug">Tracking 2,500+ AR ledgers & cash flows.</p>
             </div>
           </div>
 
-          <!-- Module Card 4: Utility Tools -->
-          <div onclick="switchView('projects', document.getElementById('nav-projects'))" class="float-hover bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-lg cursor-pointer select-none space-y-3 flex flex-col justify-between">
+          <!-- Application Skill 4: Utility Tools -->
+          <div onclick="switchView('projects', document.getElementById('nav-projects'))" class="float-hover bg-slate-900 border border-slate-800 rounded-2xl p-5 cursor-pointer select-none flex flex-col justify-between space-y-3 shadow-lg">
             <div class="flex justify-between items-center">
-              <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-base">⚙️</div>
-              <span class="text-[9px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded font-bold uppercase">AUTOMATION</span>
+              <span class="text-lg">⚙️</span>
+              <span class="text-[9px] font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20 px-2 py-0.5 rounded">AUTO</span>
             </div>
             <div>
-              <h3 class="font-bold text-white text-sm">UTILITY TOOLS</h3>
-              <p class="text-[11px] text-slate-400 mt-1 leading-normal">Google Sheets API & automated business workflow integrations.</p>
-            </div>
-            <div class="flex items-center justify-between text-[11px] text-emerald-400 pt-2 border-t border-slate-800/60 font-medium">
-              <span>View Utilities</span>
-              <span>➔</span>
+              <h3 class="text-sm font-bold text-white">Utility Tools</h3>
+              <p class="text-[11px] text-slate-400 mt-1 leading-snug">Google Sheets API & automated workflows.</p>
             </div>
           </div>
-
         </div>
       </div>
 
