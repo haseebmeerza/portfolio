@@ -24,7 +24,7 @@
     /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #0b0f19; }
-    ::-webkit-scrollbar-thumb { background: #1e293b; rounded: 3px; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: #334155; }
   </style>
 </head>
@@ -85,7 +85,7 @@
     <!-- ================= VIEW 1: EXECUTIVE OVERVIEW ================= -->
     <div id="view-overview" class="page-view active space-y-8">
       
-      <!-- Native Executive Header Banner (Dark Theme Harmonized) -->
+      <!-- Native Executive Header Banner -->
       <section class="bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-800/80 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
         <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 relative z-10">
           <div class="space-y-3 max-w-2xl">
@@ -109,18 +109,50 @@
         </div>
       </section>
 
-      <!-- Application Skills & Interactive Dashboard Section -->
+      <!-- ALL KPI CARDS (Restored & Preserved) -->
+      <section class="space-y-4">
+        <div class="flex justify-between items-center">
+          <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Key Performance Indicators (Click to Shift Color)</h2>
+          <span class="text-[11px] text-amber-400 font-medium">💡 Click card to toggle color & float</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          
+          <!-- KPI 1 -->
+          <div onclick="cycleCardColor(this)" class="float-card bg-slate-900 border border-slate-800 rounded-2xl p-5 cursor-pointer select-none" data-state="0">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">AR Aging Optimization</p>
+            <h3 class="text-2xl font-black text-white mt-1">90+ ➔ 60 Days</h3>
+            <p class="text-[11px] text-emerald-400 font-medium mt-2">Practical Operations</p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div onclick="cycleCardColor(this)" class="float-card bg-slate-900 border border-slate-800 rounded-2xl p-5 cursor-pointer select-none" data-state="0">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Account Scale</p>
+            <h3 class="text-2xl font-black text-white mt-1">2,500+ Ledgers</h3>
+            <p class="text-[11px] text-blue-400 font-medium mt-2">Amazon, Noon, Talabat</p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div onclick="cycleCardColor(this)" class="float-card bg-slate-900 border border-slate-800 rounded-2xl p-5 cursor-pointer select-none" data-state="0">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Leadership Track</p>
+            <h3 class="text-2xl font-black text-white mt-1">17+ Years</h3>
+            <p class="text-[11px] text-purple-400 font-medium mt-2">UAE & Global Scope</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Application Skills & Systems Dashboard Grid -->
       <section class="space-y-4">
         <div class="flex justify-between items-center">
           <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Application Skills & Systems</h2>
-          <span class="text-[11px] text-amber-400 font-medium">💡 Click any card to launch module</span>
+          <span class="text-[11px] text-slate-500">Interactive Modules</span>
         </div>
 
-        <!-- 2-Column Dashboard Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           
-          <!-- Card 1: Live POS System -->
-          <div onclick="switchPage('projects', document.querySelectorAll('.nav-btn')[2])" class="float-card bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg cursor-pointer select-none space-y-4 flex flex-col justify-between" data-state="0">
+          <!-- Module 1: Live POS System -->
+          <div onclick="switchPage('projects', document.querySelectorAll('.nav-btn')[2])" class="float-card bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg cursor-pointer select-none space-y-4 flex flex-col justify-between">
             <div class="flex justify-between items-start">
               <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-lg">🛒</div>
               <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-bold uppercase">LIVE</span>
@@ -130,10 +162,296 @@
               <p class="text-xs text-slate-400 mt-1 leading-relaxed">Manage sales, real-time inventory & GPS attendance with Google Sheets backend.</p>
             </div>
             <div class="flex items-center justify-between text-[11px] text-blue-400 pt-2 border-t border-slate-800/60 font-medium">
-              <span>View Module Details</span>
+              <span>Launch Module Details</span>
               <span>➔</span>
             </div>
           </div>
 
-          <!-- Card 2: Android Quiz App -->
-          <div onclick="switchPage('projects', document.querySelectorAll('.nav-btn')[2])" class="float-card bg-slate-900 border
+          <!-- Module 2: Android Quiz App -->
+          <div onclick="switchPage('projects', document.querySelectorAll('.nav-btn')[2])" class="float-card bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg cursor-pointer select-none space-y-4 flex flex-col justify-between">
+            <div class="flex justify-between items-start">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-lg">📱</div>
+              <span class="text-[9px] bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded font-bold uppercase">APK PIPELINE</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-base">ANDROID QUIZ APP</h3>
+              <p class="text-xs text-slate-400 mt-1 leading-relaxed">Capacitor cross-platform build with GitHub Actions automated CI/CD pipeline.</p>
+            </div>
+            <div class="flex items-center justify-between text-[11px] text-purple-400 pt-2 border-t border-slate-800/60 font-medium">
+              <span>View Pipeline Details</span>
+              <span>➔</span>
+            </div>
+          </div>
+
+          <!-- Module 3: Financial Dashboard -->
+          <div onclick="switchPage('experience', document.querySelectorAll('.nav-btn')[1])" class="float-card bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg cursor-pointer select-none space-y-4 flex flex-col justify-between">
+            <div class="flex justify-between items-start">
+              <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-lg">📊</div>
+              <span class="text-[9px] bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded font-bold uppercase">POWER BI</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-base">FINANCIAL DASHBOARD</h3>
+              <p class="text-xs text-slate-400 mt-1 leading-relaxed">Track 2,500+ AR accounts, aging trends & cash flow reconciliations.</p>
+            </div>
+            <div class="flex items-center justify-between text-[11px] text-amber-400 pt-2 border-t border-slate-800/60 font-medium">
+              <span>View Financial KPIs</span>
+              <span>➔</span>
+            </div>
+          </div>
+
+          <!-- Module 4: Utility Tools -->
+          <div onclick="switchPage('projects', document.querySelectorAll('.nav-btn')[2])" class="float-card bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg cursor-pointer select-none space-y-4 flex flex-col justify-between">
+            <div class="flex justify-between items-start">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-lg">⚙️</div>
+              <span class="text-[9px] bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded font-bold uppercase">AUTOMATION</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-base">UTILITY TOOLS</h3>
+              <p class="text-xs text-slate-400 mt-1 leading-relaxed">Google Sheets API & automated business workflow integrations.</p>
+            </div>
+            <div class="flex items-center justify-between text-[11px] text-emerald-400 pt-2 border-t border-slate-800/60 font-medium">
+              <span>View Utility Specs</span>
+              <span>➔</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================= VIEW 2: FULL CV & EXPERIENCE ================= -->
+    <div id="view-experience" class="page-view space-y-6">
+      
+      <div class="flex justify-between items-center bg-slate-900 border border-slate-800 p-4 rounded-2xl shadow-md">
+        <div class="flex items-center gap-3">
+          <span class="text-base">💼</span>
+          <h2 class="text-sm font-bold text-white uppercase tracking-wider">Full CV & Career Track</h2>
+        </div>
+        <button onclick="switchPage('overview', document.querySelectorAll('.nav-btn')[0])" class="text-xs bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-xl transition float-card flex items-center gap-1.5">
+          <span>← Back to Main Menu</span>
+        </button>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-6 shadow-xl">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-800 pb-5 gap-4">
+          <div>
+            <h3 class="text-xl font-extrabold text-white">Haseeb Mirza</h3>
+            <p class="text-xs text-blue-400 font-medium mt-0.5">Accounts Receivable Supervisor | Credit Control Expert | UAE & Remote</p>
+          </div>
+          <a href="Haseeb Mirza - AR Supervisor CV.pdf" download class="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl transition float-card flex items-center gap-2">
+            📥 Download Complete CV (.PDF)
+          </a>
+        </div>
+
+        <div class="space-y-6 text-xs text-slate-300">
+          
+          <div class="border-l-2 border-blue-500 pl-4 space-y-2">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center">
+              <h4 class="font-bold text-white text-sm">Freelance Finance & Data Professional</h4>
+              <span class="text-slate-500 font-mono text-[11px]">Mar 2026 – Present</span>
+            </div>
+            <p class="text-slate-400 leading-relaxed">Managing accounts receivable follow-up, ledger reconciliation, data entry, and Power BI/Excel dashboards remotely for small and medium-sized international clients.</p>
+          </div>
+
+          <div class="border-l-2 border-slate-700 pl-4 space-y-2">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center">
+              <h4 class="font-bold text-white text-sm">Accounts Receivable Supervisor — Al Mir Group of Companies (UAE)</h4>
+              <span class="text-slate-500 font-mono text-[11px]">Jan 2018 – Feb 2026</span>
+            </div>
+            <p class="text-slate-400 leading-relaxed">Cut AR aging from 90+ to 60 days, led a team of 4 to deploy the group's in-house ERP, managed high-volume ledgers for Amazon, Walmart, Talabat, and Noon, and maintained 100% UAE VAT/FTA compliance.</p>
+          </div>
+
+          <div class="border-l-2 border-slate-700 pl-4 space-y-2">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center">
+              <h4 class="font-bold text-white text-sm">Accounts Receivable & Payable Executive — Al Mir Group</h4>
+              <span class="text-slate-500 font-mono text-[11px]">May 2008 – Jan 2018</span>
+            </div>
+            <p class="text-slate-400 leading-relaxed">Handled invoice issuance, payment application, account reconciliations, utility payments, journal entries, and supported month-end/year-end closing audits.</p>
+          </div>
+
+          <div class="border-l-2 border-slate-700 pl-4 space-y-2">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center">
+              <h4 class="font-bold text-white text-sm">Retail Operation Associate — Junaid Jamshed (Pvt.) Ltd.</h4>
+              <span class="text-slate-500 font-mono text-[11px]">Jan 2006 – Jan 2008</span>
+            </div>
+            <p class="text-slate-400 leading-relaxed">Led Candela POS rollout across 13 cities, standardizing accounting, inventory, and sales auditing operations.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="text-center pt-2">
+        <button onclick="switchPage('overview', document.querySelectorAll('.nav-btn')[0])" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold px-6 py-2.5 rounded-xl border border-slate-700 transition float-card">
+          🏠 Back to Main Menu
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ================= VIEW 3: APPS & SYSTEMS ================= -->
+    <div id="view-projects" class="page-view space-y-6">
+      
+      <div class="flex justify-between items-center bg-slate-900 border border-slate-800 p-4 rounded-2xl shadow-md">
+        <div class="flex items-center gap-3">
+          <span class="text-base">💻</span>
+          <h2 class="text-sm font-bold text-white uppercase tracking-wider">Application Systems & Technical Workflows</h2>
+        </div>
+        <button onclick="switchPage('overview', document.querySelectorAll('.nav-btn')[0])" class="text-xs bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-xl transition float-card">
+          ← Back to Main Menu
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-4 shadow-xl float-card">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="font-bold text-white text-base">Live POS & Daily Planner</h3>
+              <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-bold">FULL STACK</span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Enterprise management tool featuring role-based dashboards (Manager / Team Member), live geolocation attendance tracking, automated CSV reporting, and direct Google Apps Script database synchronization.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-1.5 pt-2">
+            <span class="text-[10px] bg-slate-950 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-800">HTML5/Tailwind</span>
+            <span class="text-[10px] bg-slate-950 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-800">Google Apps Script</span>
+            <span class="text-[10px] bg-slate-950 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-800">REST API</span>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-4 shadow-xl float-card">
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="font-bold text-white text-base">MCQ-Quiz APK Pipeline</h3>
+              <span class="text-[9px] bg-purple-500/10 text-purple-400 border border-purple-500/20 px-2 py-0.5 rounded font-bold">MOBILE BUILD</span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Cross-platform testing application built with Capacitor 6 frameworks, supporting dynamic Urdu Nastaliq typography, offline-first state caching, and automated GitHub Actions CI/CD compilation pipelines.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-1.5 pt-2">
+            <span class="text-[10px] bg-slate-950 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-800">Capacitor 6</span>
+            <span class="text-[10px] bg-slate-950 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-800">GitHub Actions</span>
+            <span class="text-[10px] bg-slate-950 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-800">Android APK</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center pt-2">
+        <button onclick="switchPage('overview', document.querySelectorAll('.nav-btn')[0])" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold px-6 py-2.5 rounded-xl border border-slate-700 transition float-card">
+          🏠 Back to Main Menu
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ================= VIEW 4: CONTACT & WHATSAPP ================= -->
+    <div id="view-contact" class="page-view space-y-6">
+      
+      <div class="flex justify-between items-center bg-slate-900 border border-slate-800 p-4 rounded-2xl shadow-md">
+        <div class="flex items-center gap-3">
+          <span class="text-base">📱</span>
+          <h2 class="text-sm font-bold text-white uppercase tracking-wider">Contact Details & Instant Scan</h2>
+        </div>
+        <button onclick="switchPage('overview', document.querySelectorAll('.nav-btn')[0])" class="text-xs bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-xl transition float-card">
+          ← Back to Main Menu
+        </button>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 shadow-xl">
+        <!-- WhatsApp Scan Code Image -->
+        <div class="bg-white p-4 rounded-2xl shadow-2xl shrink-0 text-center">
+          <img src="Whtsapp Scan_2.jpeg" alt="WhatsApp Business QR Code" class="w-44 h-44 object-contain mx-auto rounded-lg" onerror="this.src='Whtsapp Scan.jpeg'">
+          <p class="text-[11px] text-slate-800 font-bold mt-2">Scan to Chat on WhatsApp</p>
+        </div>
+
+        <div class="space-y-4 text-xs text-slate-300">
+          <h3 class="text-lg font-bold text-white">Direct Communication Channels</h3>
+          <p class="text-slate-400 leading-relaxed">Feel free to reach out for remote accounts receivable management, credit control consulting, Power BI/Excel dashboards, or custom application workflows.</p>
+          
+          <div class="space-y-3 pt-2">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">📱</span>
+              <div>
+                <p class="text-[10px] text-slate-500 uppercase font-bold">UAE Phone & WhatsApp</p>
+                <a href="tel:+971507256801" class="text-sm font-bold text-emerald-400 hover:underline">+971 50 725 6801</a>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">📱</span>
+              <div>
+                <p class="text-[10px] text-slate-500 uppercase font-bold">Pakistan Phone</p>
+                <a href="tel:+923452104860" class="text-sm font-bold text-blue-400 hover:underline">+92 345 2104860</a>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">✉️</span>
+              <div>
+                <p class="text-[10px] text-slate-500 uppercase font-bold">Email Address</p>
+                <a href="mailto:haseebmeerza@hotmail.com" class="text-sm font-bold text-slate-200 hover:underline">haseebmeerza@hotmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center pt-2">
+        <button onclick="switchPage('overview', document.querySelectorAll('.nav-btn')[0])" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold px-6 py-2.5 rounded-xl border border-slate-700 transition float-card">
+          🏠 Back to Main Menu
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 pt-6 text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p>© 2026 Haseeb Mirza. Designed for peak operational efficiency.</p>
+      <div class="flex gap-4 font-mono text-[11px]">
+        <a href="tel:+971507256801" class="text-emerald-400 hover:underline">+971 50 725 6801</a>
+        <a href="tel:+923452104860" class="text-blue-400 hover:underline">+92 345 2104860</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Interactive JavaScript Controller -->
+  <script>
+    function switchPage(pageId, btnElement) {
+      document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active'));
+      const targetView = document.getElementById('view-' + pageId);
+      if (targetView) targetView.classList.add('active');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.className = "nav-btn w-full text-left px-3.5 py-2.5 text-xs font-semibold rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white border border-transparent float-card flex items-center justify-between";
+        btn.classList.remove('float-active');
+      });
+
+      if (btnElement) {
+        btnElement.className = "nav-btn w-full text-left px-3.5 py-2.5 text-xs font-semibold rounded-xl bg-blue-600/20 text-blue-400 border border-blue-500/30 float-card float-active flex items-center justify-between";
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function cycleCardColor(card) {
+      const themes = [
+        { bg: 'bg-slate-900', border: 'border-slate-800' },
+        { bg: 'bg-blue-950/90', border: 'border-blue-700/60' },
+        { bg: 'bg-emerald-950/90', border: 'border-emerald-700/60' },
+        { bg: 'bg-purple-950/90', border: 'border-purple-700/60' }
+      ];
+      
+      let state = parseInt(card.getAttribute('data-state')) || 0;
+      state = (state + 1) % themes.length;
+      card.setAttribute('data-state', state);
+
+      card.className = "float-card rounded-2xl p-5 cursor-pointer select-none transition-all duration-300 float-active " + themes[state].bg + " " + themes[state].border;
+    }
+  </script>
+</body>
+</html>
