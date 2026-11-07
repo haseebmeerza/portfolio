@@ -3,97 +3,199 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Haseeb Mirza — Full-Stack & Mobile App Developer</title>
+  <title>Haseeb Mirza — Senior Finance & Full-Stack Professional</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { background: #0f172a; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+    body { background: #0b0f19; color: #f3f4f6; font-family: system-ui, -apple-system, sans-serif; }
+    /* Floating Effect */
+    .float-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: float 4s ease-in-out infinite;
+    }
+    .float-card:nth-child(2) { animation-delay: 1s; }
+    .float-card:nth-child(3) { animation-delay: 2s; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between p-4 md:p-12">
+<body class="min-h-screen flex flex-col md:flex-row">
 
-  <main class="max-w-4xl mx-auto w-full space-y-10">
-    <!-- Header -->
-    <header class="border-b border-slate-700 pb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+  <!-- Left Side Professional Navigation Menu -->
+  <aside class="w-full md:w-64 bg-slate-900 border-r border-slate-800 p-6 flex flex-col justify-between shrink-0">
+    <div class="space-y-8">
       <div>
-        <h1 class="text-2xl md:text-3xl font-extrabold text-white">Haseeb Mirza</h1>
-        <p class="text-sm text-blue-400 font-medium">Full-Stack Web & Android App Developer</p>
+        <h2 class="text-lg font-bold text-white tracking-wide">Haseeb Mirza</h2>
+        <p class="text-xs text-blue-400 font-medium mt-0.5">AR Supervisor & Developer</p>
       </div>
-      <div class="text-xs text-slate-400 bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-lg">
-        📍 Pakistan · Available for Projects
+      
+      <nav class="space-y-1">
+        <a href="#overview" class="block px-3 py-2 text-xs font-medium rounded-lg bg-blue-600/10 text-blue-400 border border-blue-500/20">📊 Overview & KPIs</a>
+        <a href="#experience" class="block px-3 py-2 text-xs font-medium rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition">💼 Experience & CV</a>
+        <a href="#projects" class="block px-3 py-2 text-xs font-medium rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition">💻 Systems & Apps</a>
+        <a href="#contact" class="block px-3 py-2 text-xs font-medium rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition">📱 Contact & Channels</a>
+      </nav>
+    </div>
+
+    <div class="text-[11px] text-slate-500 border-t border-slate-800 pt-4 mt-6">
+      <p class="font-semibold text-slate-400">Remote Availability</p>
+      <p class="mt-1">AR Management, Data Entry, Power BI & Excel Dashboards.</p>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 p-6 md:p-12 overflow-y-auto space-y-10 max-w-5xl">
+
+    <!-- Header Section with Realistic Visual Context -->
+    <header id="overview" class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 bg-slate-900/60 border border-slate-800 p-6 rounded-2xl backdrop-blur-sm">
+      <div class="space-y-2">
+        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          🟢 Available for Remote Projects
+        </div>
+        <h1 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Haseeb Mirza</h1>
+        <p class="text-sm text-slate-400 max-w-xl">
+          Accounts Receivable Supervisor with 17+ years managing 2,500+ global accounts (Amazon, Walmart, Noon, Talabat) and driving automated full-stack workflow solutions.
+        </p>
       </div>
+      <!-- Realistic Professional Graphic Avatar -->
+      <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&q=80&w=300" alt="Finance Dashboard Workspace" class="w-28 h-28 object-cover rounded-xl border border-slate-700 shadow-lg shrink-0">
     </header>
 
-    <!-- About Bio -->
-    <section class="bg-slate-800 border border-slate-700 rounded-xl p-6 shadow-xl">
-      <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">About Me</h2>
-      <p class="text-sm text-slate-300 leading-relaxed">
-        Specialized in engineering lightweight, high-performance web applications and automated Android APK pipelines. I build live, production-ready systems utilizing modern frontend architectures coupled with serverless Google Sheets backends and GitHub Actions CI/CD automation.
-      </p>
-    </section>
-
-    <!-- Live Projects Grid -->
+    <!-- Interactive Floating KPI Cards (Color changing on click) -->
     <section class="space-y-4">
-      <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Featured Production Work</h2>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- Project 1 -->
-        <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 flex flex-col justify-between space-y-4">
-          <div>
-            <div class="flex justify-between items-center mb-2">
-              <h3 class="font-bold text-white text-base">Live POS & Daily Planner System</h3>
-              <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded font-bold uppercase">Live Production</span>
-            </div>
-            <p class="text-xs text-slate-400">
-              Enterprise management tool featuring role-based dashboards (Manager / Team Member), live geolocation attendance tracking, automated CSV reporting, and direct Google Apps Script database synchronization.
-            </p>
-          </div>
-          <div class="flex flex-wrap gap-1.5 pt-2">
-            <span class="text-[10px] bg-slate-900 text-slate-300 px-2 py-1 rounded border border-slate-700">HTML5 / Tailwind</span>
-            <span class="text-[10px] bg-slate-900 text-slate-300 px-2 py-1 rounded border border-slate-700">Google Apps Script</span>
-            <span class="text-[10px] bg-slate-900 text-slate-300 px-2 py-1 rounded border border-slate-700">Vanilla JS</span>
-          </div>
+      <div class="flex justify-between items-center">
+        <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Core Performance Metrics (Click to Cycle Color)</h2>
+        <span class="text-[11px] text-slate-500">Interactive Floating Cards</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <!-- KPI Card 1 -->
+        <div onclick="cycleCardColor(this)" class="float-card bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg cursor-pointer select-none" data-state="0">
+          <p class="text-[11px] font-medium text-slate-400 uppercase">AR Aging Reduction</p>
+          <h3 class="text-2xl font-black text-white mt-1">90+ ➔ 60 Days</h3>
+          <p class="text-[11px] text-emerald-400 mt-2">Al Mir Group Operations</p>
         </div>
 
-        <!-- Project 2 -->
-        <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 flex flex-col justify-between space-y-4">
-          <div>
-            <div class="flex justify-between items-center mb-2">
-              <h3 class="font-bold text-white text-base">MCQ-Quiz Android Application</h3>
-              <span class="text-[10px] bg-blue-950 text-blue-400 border border-blue-800 px-2 py-0.5 rounded font-bold uppercase">Capacitor APK</span>
-            </div>
-            <p class="text-xs text-slate-400">
-              Cross-platform educational testing application built with Capacitor 6 frameworks, supporting dynamic Urdu Nastaliq typography, offline-first state caching, and automated GitHub Actions CI/CD compilation pipelines.
-            </p>
-          </div>
-          <div class="flex flex-wrap gap-1.5 pt-2">
-            <span class="text-[10px] bg-slate-900 text-slate-300 px-2 py-1 rounded border border-slate-700">Capacitor 6</span>
-            <span class="text-[10px] bg-slate-900 text-slate-300 px-2 py-1 rounded border border-slate-700">GitHub Actions</span>
-            <span class="text-[10px] bg-slate-900 text-slate-300 px-2 py-1 rounded border border-slate-700">PWA / APK</span>
-          </div>
+        <!-- KPI Card 2 -->
+        <div onclick="cycleCardColor(this)" class="float-card bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg cursor-pointer select-none" data-state="0">
+          <p class="text-[11px] font-medium text-slate-400 uppercase">Portfolio Scale</p>
+          <h3 class="text-2xl font-black text-white mt-1">2,500+ Accounts</h3>
+          <p class="text-[11px] text-blue-400 mt-2">Amazon, Noon, Talabat</p>
+        </div>
+
+        <!-- KPI Card 3 -->
+        <div onclick="cycleCardColor(this)" class="float-card bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg cursor-pointer select-none" data-state="0">
+          <p class="text-[11px] font-medium text-slate-400 uppercase">Experience Track</p>
+          <h3 class="text-2xl font-black text-white mt-1">17+ Years</h3>
+          <p class="text-[11px] text-purple-400 mt-2">Credit Control & ERP Deploy</p>
         </div>
       </div>
     </section>
 
-    <!-- Technical Stack -->
-    <section class="bg-slate-800 border border-slate-700 rounded-xl p-6 shadow-xl">
-      <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Core Technical Stack</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs text-slate-300 font-semibold">
-        <div class="bg-slate-900 p-3 rounded-lg border border-slate-700 text-center">Frontend UI<br><span class="text-[11px] text-slate-400 font-normal">Tailwind, HTML5, JS</span></div>
-        <div class="bg-slate-900 p-3 rounded-lg border border-slate-700 text-center">Backend DB<br><span class="text-[11px] text-slate-400 font-normal">Google Sheets API</span></div>
-        <div class="bg-slate-900 p-3 rounded-lg border border-slate-700 text-center">Mobile Deployment<br><span class="text-[11px] text-slate-400 font-normal">Capacitor & APKs</span></div>
-        <div class="bg-slate-900 p-3 rounded-lg border border-slate-700 text-center">CI/CD Pipeline<br><span class="text-[11px] text-slate-400 font-normal">GitHub Actions</span></div>
+    <!-- Professional CV Summary -->
+    <section id="experience" class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-6">
+      <div class="flex justify-between items-center border-b border-slate-800 pb-4">
+        <h2 class="text-sm font-bold text-white uppercase tracking-wider">Professional Work Experience</h2>
+        <span class="text-xs text-blue-400 font-mono">UAE & Pakistan Operations</span>
+      </div>
+
+      <div class="space-y-6 text-xs text-slate-300">
+        <!-- Role 1 -->
+        <div class="border-l-2 border-blue-500 pl-4 space-y-2">
+          <div class="flex flex-col sm:flex-row justify-between sm:items-center">
+            <h3 class="font-bold text-white text-sm">Freelance Finance & Data Professional</h3>
+            <span class="text-slate-500 font-mono text-[11px]">Mar 2026 – Present</span>
+          </div>
+          <p class="text-slate-400">Managing accounts receivable follow-up, ledger reconciliations, and building automated Power BI / Excel dashboards for remote businesses.</p>
+        </div>
+
+        <!-- Role 2 -->
+        <div class="border-l-2 border-slate-700 pl-4 space-y-2">
+          <div class="flex flex-col sm:flex-row justify-between sm:items-center">
+            <h3 class="font-bold text-white text-sm">Accounts Receivable Supervisor — Al Mir Group</h3>
+            <span class="text-slate-500 font-mono text-[11px]">Jan 2018 – Feb 2026</span>
+          </div>
+          <p class="text-slate-400">Cut AR aging from 90+ to 60 days, led a team of 4 to deploy the group's in-house ERP, managed high-volume ledgers for Amazon, Walmart, Talabat, and Noon, and ensured 100% audit-ready UAE VAT compliance.</p>
+        </div>
+
+        <!-- Role 3 -->
+        <div class="border-l-2 border-slate-700 pl-4 space-y-2">
+          <div class="flex flex-col sm:flex-row justify-between sm:items-center">
+            <h3 class="font-bold text-white text-sm">Retail Operation Associate — Junaid Jamshed (Pvt.) Ltd.</h3>
+            <span class="text-slate-500 font-mono text-[11px]">Jan 2006 – Jan 2008</span>
+          </div>
+          <p class="text-slate-400">Led the Candela POS rollout across 13 cities, standardizing accounting procedures, stock verification, and inventory auditing workflows.</p>
+        </div>
       </div>
     </section>
 
-    <!-- Footer Contact -->
-    <footer class="border-t border-slate-800 pt-6 text-center text-slate-400 text-xs flex flex-col sm:flex-row justify-between items-center gap-3">
-      <p>Designed and Developed by Haseeb Mirza.</p>
-      <div class="flex gap-4">
-        <a href="tel:+923318696222" class="text-blue-400 hover:underline">📱 +92 331 8696222</a>
-        <a href="https://github.com/mystudymf" target="_blank" class="text-blue-400 hover:underline">💻 GitHub Profile</a>
+    <!-- Technical Systems & Apps -->
+    <section id="projects" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Card A -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-4">
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <h3 class="font-bold text-white text-sm">POS & Daily Planner System</h3>
+            <span class="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-bold">Live POS</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Enterprise management dashboard with role-based permissions, geolocation attendance logging, and serverless Google Sheets database synchronization via Apps Script.
+          </p>
+        </div>
+        <div class="flex gap-1.5 pt-2">
+          <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700">HTML5/Tailwind</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700">Google Apps Script</span>
+        </div>
+      </div>
+
+      <!-- Card B -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-4">
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <h3 class="font-bold text-white text-sm">Mobile APK Pipelines (Capacitor)</h3>
+            <span class="text-[10px] bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded font-bold">CI/CD Automation</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Configuring automated GitHub Actions workflows to compile cross-platform testing applications and educational quizzes directly into ready-to-install Android APKs.
+          </p>
+        </div>
+        <div class="flex gap-1.5 pt-2">
+          <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700">Capacitor 6</span>
+          <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700">GitHub Actions</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Footer -->
+    <footer id="contact" class="border-t border-slate-800 pt-6 text-xs text-slate-400 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p>© 2026 Haseeb Mirza. All rights reserved.</p>
+      <div class="flex flex-wrap gap-4 font-medium">
+        <a href="tel:+923452104860" class="text-blue-400 hover:underline">📱 PK: +92 345 2104860</a>
+        <a href="tel:+971507256801" class="text-emerald-400 hover:underline">📱 UAE: +971 50 725 6801</a>
+        <a href="mailto:haseebmeerza@hotmail.com" class="text-slate-300 hover:underline">✉️ haseebmeerza@hotmail.com</a>
       </div>
     </footer>
+
   </main>
 
+  <!-- Color Cycling Script for Floating KPI Cards -->
+  <script>
+    function cycleCardColor(card) {
+      const states = [
+        { bg: 'bg-slate-900', border: 'border-slate-800', text: 'text-white' },
+        { bg: 'bg-blue-950/80', border: 'border-blue-700/50', text: 'text-blue-200' },
+        { bg: 'bg-emerald-950/80', border: 'border-emerald-700/50', text: 'text-emerald-200' },
+        { bg: 'bg-purple-950/80', border: 'border-purple-700/50', text: 'text-purple-200' }
+      ];
+      
+      let currentState = parseInt(card.getAttribute('data-state')) || 0;
+      currentState = (currentState + 1) % states.length;
+      card.setAttribute('data-state', currentState);
+
+      // Reset classes
+      card.className = "float-card rounded-xl p-5 shadow-lg cursor-pointer select-none transition-all duration-300 " + states[currentState].bg + " " + states[currentState].border;
+    }
+  </script>
 </body>
 </html>
