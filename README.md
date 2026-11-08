@@ -1,8 +1,10 @@
 # Haseeb Mirza — Portfolio
-Static site, no build step. Upload everything to the repo root.
+Static site, no build step. Upload everything to the repo root (replace existing files).
 
 - index.html — dashboard (showreel + work showcase)
-- demos/ — dummy-data demos (POS password: demo)
+- demos/ — protected dummy-data demos (POS password: demo)
 - media/ — 20-second showreel + poster
 - images/ — logo, photo, screenshots, WhatsApp QR
-- Add your CV as Haseeb-Mirza-CV.pdf (CV buttons appear automatically)
+- CV: keep "Haseeb Mirza - AR Supervisor CV.pdf" in the repo root (CV buttons use it)
+
+Demos only run on haseebmeerza.github.io, localhost and 127.0.0.1.
