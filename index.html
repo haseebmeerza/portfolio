@@ -86,9 +86,8 @@
     .qr-card { background:#fff; border-radius:16px; padding:14px; text-align:center; max-width:260px; margin:0 auto; }
     .qr-card img { width:100%; height:auto; border-radius:8px; }
     .qr-card p { color:#1e293b; font-size:11px; font-weight:700; margin-top:8px; }
-    .ctc-grid { display:grid; grid-template-columns:1fr; gap:14px; }
-    @media (min-width:640px) { .ctc-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-    @media (min-width:1200px) { .ctc-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+    .ctc-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    @media (max-width:479px) { .ctc-grid { grid-template-columns:1fr; } }
     .ctc { display:flex; align-items:center; gap:14px; background:#0f172a; border:1px solid #1e293b; border-radius:16px; padding:16px; min-height:84px; transition:transform .2s ease,border-color .2s ease; }
     .ctc:hover { transform:translateY(-2px); border-color:#475569; }
     .ctc-ico { width:46px; height:46px; flex:0 0 46px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; }
@@ -100,6 +99,32 @@
     .bg-wa { background:#25d366; } .bg-fv { background:#1dbf73; } .bg-li { background:#0a66c2; } .bg-em { background:#ea4335; } .bg-ph { background:#2563eb; } .bg-pk { background:#475569; }
     .footer-urgent { color:#fcd34d; }
     .exp-chips { display:flex; flex-wrap:wrap; gap:8px; }
+    /* ===== app shell: frozen menu, banner and footer; only content scrolls ===== */
+    body.min-h-screen { min-height:0; height:100vh; height:100dvh; overflow:hidden; }
+    .app-main { flex:1 1 0%; min-width:0; min-height:0; display:flex; flex-direction:column; }
+    .app-bar { flex:none; padding:12px 16px 0; }
+    .scroller { flex:1 1 auto; min-height:0; overflow-y:scroll; overflow-x:hidden; padding:16px 18px 28px 16px; scrollbar-width:auto; scrollbar-color:#64748b #111827; }
+    .scroller-inner { max-width:72rem; margin:0 auto; }
+    .scroller::-webkit-scrollbar { width:14px; }
+    .scroller::-webkit-scrollbar-track { background:#111827; border-left:1px solid #1e293b; }
+    .scroller::-webkit-scrollbar-thumb { background:#64748b; border-radius:8px; border:3px solid #111827; min-height:48px; }
+    .scroller::-webkit-scrollbar-thumb:hover { background:#94a3b8; }
+    .app-footer { flex:none; border-top:1px solid #1e293b; background:rgba(15,23,42,.95); padding:10px 18px; font-size:11px; color:#64748b; display:flex; flex-wrap:wrap; gap:4px 24px; align-items:center; justify-content:space-between; }
+    .hero-video { order:1; } .hero-text { order:2; }
+    @media (min-width:768px) { .app-bar { padding:16px 24px 0; } .scroller { padding:20px 24px 32px 28px; } .app-footer { padding:10px 24px; } }
+    @media (min-width:1024px) { .hero-video { order:2; } .hero-text { order:1; } }
+    @media (max-width:767px) {
+      #side { padding:8px 12px; }
+      #side > div:first-child { display:flex; align-items:center; gap:12px; }
+      #side > div:first-child > * { margin-top:0 !important; }
+      #side .logo-row { border:0; padding:0; flex:none; }
+      #side nav { display:flex; gap:6px; overflow-x:auto; flex:1; min-width:0; }
+      #side nav > * { margin-top:0 !important; }
+      #side nav .nav-btn { width:auto; flex:0 0 auto; white-space:nowrap; }
+      #side > div:last-child { display:none; }
+      .urgent-item { padding:8px 18px; }
+      .app-footer { justify-content:center; text-align:center; }
+    }
     @media (prefers-reduced-motion: reduce) { .urgent-track { width:auto; flex-wrap:wrap; } .urgent-group + .urgent-group { display:none; } .urgent-item { white-space:normal; } }
     @media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } }
   </style>
@@ -108,9 +133,9 @@
 
   <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:bg-blue-600 focus:text-white focus:px-3 focus:py-2">Skip to content</a>
 
-  <aside class="w-full md:w-64 bg-slate-900/90 backdrop-blur-md border-b md:border-b-0 md:border-r border-slate-800/80 p-5 flex flex-col justify-between shrink-0 md:sticky md:top-0 md:h-screen z-50">
+  <aside id="side" class="w-full md:w-64 bg-slate-900/90 backdrop-blur-md border-b md:border-b-0 md:border-r border-slate-800/80 p-5 flex flex-col justify-between shrink-0 md:sticky md:top-0 md:h-screen z-50">
     <div class="space-y-6">
-      <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
+      <div class="logo-row flex items-center gap-3 border-b border-slate-800 pb-4">
         <img src="images/logo.png" alt="Haseeb Mirza logo" width="40" height="40" class="w-10 h-10 rounded-lg object-cover border border-slate-700 shrink-0">
         <div class="overflow-hidden">
           <p class="text-sm font-bold text-white truncate">Haseeb Mirza</p>
@@ -132,20 +157,22 @@
     </div>
   </aside>
 
-  <main id="main" class="flex-1 p-4 md:p-8 max-w-6xl w-full space-y-8">
+  <main id="main" class="app-main">
+    <div class="app-bar">
     <div class="urgent" role="region" aria-label="Urgent work and reporting support">
       <div class="urgent-track">
         <div class="urgent-group"><span class="urgent-item">Urgent work? Handy reports? Smart solutions are ready when you need them.</span><span class="urgent-item">Last-minute AR aging report or customer statement? Delivered fast, clean and audit-ready.</span><span class="urgent-item">Power BI and Excel dashboards that turn messy ledgers into clear decisions.</span><span class="urgent-item">Custom Google Sheets business apps: POS, trackers and planners, live in days.</span><span class="urgent-item">Message me on <a href="https://wa.me/971507256801?text=Hi%20Haseeb%2C%20I%20have%20urgent%20work." target="_blank" rel="noopener">WhatsApp</a> for a quick quote. Remote, reliable and on time.</span></div>
         <div class="urgent-group" aria-hidden="true"><span class="urgent-item">Urgent work? Handy reports? Smart solutions are ready when you need them.</span><span class="urgent-item">Last-minute AR aging report or customer statement? Delivered fast, clean and audit-ready.</span><span class="urgent-item">Power BI and Excel dashboards that turn messy ledgers into clear decisions.</span><span class="urgent-item">Custom Google Sheets business apps: POS, trackers and planners, live in days.</span><span class="urgent-item">Message me on <a tabindex="-1" href="https://wa.me/971507256801?text=Hi%20Haseeb%2C%20I%20have%20urgent%20work." target="_blank" rel="noopener">WhatsApp</a> for a quick quote. Remote, reliable and on time.</span></div>
       </div>
     </div>
-
+</div>
+    <div id="scroller" class="scroller" tabindex="-1"><div class="scroller-inner">
 
     <!-- ================= DASHBOARD ================= -->
     <div id="view-dashboard" class="page-view active space-y-8">
 
       <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        <div class="lg:col-span-7 space-y-3">
+        <div class="hero-video lg:col-span-7 space-y-3">
           <div class="rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-black">
             <video id="reel" controls playsinline muted loop autoplay preload="metadata" poster="media/poster.jpg" class="w-full h-auto block" aria-label="20-second showreel of Haseeb Mirza's apps">
               <source src="media/portfolio-showreel.mp4" type="video/mp4">
@@ -155,7 +182,7 @@
           <p class="text-[11px] text-slate-500">20-second showreel of four apps I built. Press the speaker icon for sound.</p>
         </div>
 
-        <div class="lg:col-span-5 space-y-5">
+        <div class="hero-text lg:col-span-5 space-y-5">
           <div class="flex items-center gap-4">
             <img src="images/profile.jpg" alt="Portrait of Haseeb Mirza" width="80" height="80" class="w-20 h-20 rounded-2xl object-cover border-2 border-amber-400/60 shadow-lg">
             <div>
@@ -513,7 +540,9 @@
       </div>
     </div>
 
-    <footer class="border-t border-slate-800 pt-6 text-xs text-slate-500 space-y-3">
+    </div></div>
+
+    <footer class="app-footer">
       <p class="footer-urgent font-semibold">&#9889; Urgent work? Handy reports? Smart solutions are available. <a href="https://wa.me/971507256801?text=Hi%20Haseeb%2C%20I%20have%20urgent%20work." target="_blank" rel="noopener" class="text-white hover:underline">Message me now</a></p>
       <p>&copy; 2026 Haseeb Mirza. All rights reserved.</p>
     </footer>
@@ -532,7 +561,7 @@
         if (v) { if (id === 'dashboard') { v.play().catch(function () {}); } else { v.pause(); } }
         history.replaceState(null, '', '#' + id);
         var t = anchor && document.getElementById(anchor);
-        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); else window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); else var sc = document.getElementById('scroller'); if (sc) sc.scrollTo({ top: 0, behavior: 'smooth' });
       }
       document.querySelectorAll('[data-page]').forEach(function (el) {
         el.addEventListener('click', function () { switchPage(el.dataset.page, el.dataset.anchor); });
