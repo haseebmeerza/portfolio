@@ -13,7 +13,7 @@
   <link rel="canonical" href="https://haseebmeerza.github.io/portfolio/">
   <meta property="og:site_name" content="Haseeb Mirza Portfolio">
   <meta property="og:title" content="Haseeb Mirza | AR Specialist, Power BI Dashboards and Business Apps">
-  <meta property="og:description" content="Late payments, messy ledgers, manual reports? Remote AR management, dashboards and Google Sheets business apps. Watch the 20-second showreel.">
+  <meta property="og:description" content="Late payments, messy ledgers, manual reports? Remote AR management, dashboards and Google Sheets business apps. Watch the 30-second video.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://haseebmeerza.github.io/portfolio/">
   <meta property="og:image" content="https://haseebmeerza.github.io/portfolio/images/share-card.png">
@@ -91,7 +91,7 @@
     .qr-card img { width:100%; height:auto; border-radius:8px; }
     .qr-card p { color:#1e293b; font-size:11px; font-weight:700; margin-top:8px; }
     .ctc-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
-    @media (max-width:479px) { .ctc-grid { grid-template-columns:1fr; } }
+    @media (max-width:479px) { .ctc { flex-direction:column; text-align:center; gap:8px; padding:14px 8px; } .ctc-go { display:none; } .ctc-txt { width:100%; } .ctc .ctc-txt span { white-space:normal; word-break:break-all; overflow:visible; text-overflow:clip; font-size:10.5px; } }
     .ctc { display:flex; align-items:center; gap:14px; background:#0f172a; border:1px solid #1e293b; border-radius:16px; padding:16px; min-height:84px; transition:transform .2s ease,border-color .2s ease; }
     .ctc:hover { transform:translateY(-2px); border-color:#475569; }
     .ctc-ico { width:46px; height:46px; flex:0 0 46px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; }
@@ -118,16 +118,18 @@
     @media (min-width:768px) { .app-bar { padding:16px 24px 0; } .scroller { padding:20px 24px 32px 28px; } .app-footer { padding:10px 24px; } }
     @media (min-width:1024px) { .hero-video { order:2; } .hero-text { order:1; } }
     @media (max-width:767px) {
-      #side { padding:8px 12px; }
-      #side > div:first-child { display:flex; align-items:center; gap:12px; }
+      #side { padding:8px 10px 10px; }
+      #side > div:first-child { display:block; }
       #side > div:first-child > * { margin-top:0 !important; }
-      #side .logo-row { border:0; padding:0; flex:none; }
-      #side nav { display:flex; gap:6px; overflow-x:auto; flex:1; min-width:0; }
+      #side .logo-row { border:0; padding:0 0 8px 0; }
+      #side nav { display:flex; flex-wrap:wrap; gap:6px; overflow:visible; }
       #side nav > * { margin-top:0 !important; }
-      #side nav .nav-btn { width:auto; flex:0 0 auto; white-space:nowrap; }
+      #side nav .nav-btn { width:auto; flex:1 1 30%; text-align:center; padding:9px 6px; white-space:nowrap; }
       #side > div:last-child { display:none; }
       .urgent-item { padding:8px 18px; }
-      .app-footer { justify-content:center; text-align:center; }
+      .app-footer { justify-content:center; text-align:center; padding:6px 12px; gap:0; }
+      .app-footer p:last-child { display:none; }
+      .app-bar { padding-top:8px; }
     }
     @media (prefers-reduced-motion: reduce) { .urgent-track { width:auto; flex-wrap:wrap; } .urgent-group + .urgent-group { display:none; } .urgent-item { white-space:normal; } }
     @media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } }
@@ -178,12 +180,12 @@
       <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         <div class="hero-video lg:col-span-7 space-y-3">
           <div class="rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-black">
-            <video id="reel" controls playsinline muted loop autoplay preload="metadata" poster="media/poster.jpg" class="w-full h-auto block" aria-label="20-second showreel of Haseeb Mirza's apps">
-              <source src="media/portfolio-showreel.mp4" type="video/mp4">
+            <video id="reel" controls playsinline muted loop autoplay preload="metadata" poster="media/poster.jpg?v=2" class="w-full h-auto block" aria-label="30-second video: custom business apps by Haseeb Mirza">
+              <source src="media/portfolio-showreel.mp4?v=2" type="video/mp4">
               Your browser can’t play this video. <a href="media/portfolio-showreel.mp4">Download the showreel</a>.
             </video>
           </div>
-          <p class="text-[11px] text-slate-500">20-second showreel of four apps I built. Press the speaker icon for sound.</p>
+          <p class="text-[11px] text-slate-500">30-second video: the four apps I built. Each one has a live demo in the Project Portfolio.</p>
         </div>
 
         <div class="hero-text lg:col-span-5 space-y-5">
