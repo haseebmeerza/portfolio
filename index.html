@@ -11,8 +11,8 @@
 <link rel="canonical" href="https://haseebmeerza.github.io/portfolio/">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Your shop. One simple app. | Haseeb Mirza">
-<meta property="og:description" content="Custom business apps on Google Sheets. No servers, no monthly software fees. Watch the 30-second showreel.">
+<meta property="og:title" content="Business apps, dashboards and receivables support | Haseeb Mirza">
+<meta property="og:description" content="Shop POS, inventory, planners, Android apps, Power BI dashboards and AR follow-up on Google Sheets. No monthly software fees. Watch the 30-second showreel.">
 <meta property="og:url" content="https://haseebmeerza.github.io/portfolio/">
 <meta property="og:image" content="https://haseebmeerza.github.io/portfolio/media/og-cover.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -62,11 +62,13 @@ nav a[aria-current]{background:rgba(37,99,235,.2);color:#60a5fa;border-color:rgb
 .hero{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;padding-top:36px}
 @media(min-width:900px){.hero{grid-template-columns:5fr 6fr}}
 h1{font-size:clamp(30px,5vw,46px);font-weight:900;line-height:1.1;letter-spacing:-.02em}
-h1 em{font-style:normal;color:var(--g);white-space:nowrap}
+h1 em{font-style:normal;color:var(--g)}
 .hero p.sub{color:#cbd5e1;font-size:16px;margin:14px 0 20px;max-width:520px}
 .who{display:flex;align-items:center;gap:12px;margin-bottom:18px;color:var(--mu);font-size:13px}
 .who img{width:56px;height:56px;border-radius:14px;border:2px solid rgba(251,191,36,.6);object-fit:cover}
 .vid{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:0 25px 60px -15px rgba(16,185,129,.18)}
+.vid{position:relative}.playbtn{position:absolute;inset:0;margin:auto;width:76px;height:76px;border-radius:50%;border:0;background:rgba(16,185,129,.92);color:#022c22;font-size:30px;display:none;place-items:center;cursor:pointer;z-index:2}.verr{padding:14px;font-size:13px;color:#fca5a5;background:#1f1115}.verr[hidden]{display:none}
+.brief li{font-size:13px;color:#cbd5e1;padding-left:16px;position:relative;margin:7px 0}.brief li:before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--g)}.brief h3{font-size:17px}.brief.need{border-color:rgba(245,158,11,.4)}.brief.need li:before{background:var(--a)}
 .vid video{width:100%;height:auto;aspect-ratio:16/9}
 .chaps{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 .chaps button{font:600 11px system-ui;color:#cbd5e1;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:5px 11px;cursor:pointer}
@@ -79,6 +81,7 @@ h1 em{font-style:normal;color:var(--g);white-space:nowrap}
 .grid{display:grid;gap:16px;margin-top:24px;grid-template-columns:1fr}
 @media(min-width:700px){.g2{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1000px){.g4{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:900px){.g3{grid-template-columns:repeat(3,1fr)}}
 .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;transition:transform .25s,border-color .25s}
 .card:hover{transform:translateY(-2px);border-color:var(--line2)}
 .card h3{font-size:16px;font-weight:800;margin-bottom:6px}.card p{font-size:13px;color:var(--mu)}
@@ -144,15 +147,17 @@ footer{border-top:1px solid var(--line);padding:28px 0 90px;font-size:12px;color
 <section id="dashboard" class="hero">
 <div>
 <div class="who"><img src="images/profile.jpg" alt="Portrait of Haseeb Mirza" width="56" height="56"><span>Haseeb Mirza<br>Google Sheets app builder · AR specialist · UAE</span></div>
-<h1>Your shop. <em>One simple app.</em></h1>
-<p class="sub">I build custom <strong>Google Sheets business apps</strong>: shop POS, inventory, planners and Android apps. Your data stays in your own sheet, with <strong>no servers and no monthly software fees</strong>. Backed by 17+ years in accounts receivable and credit control.</p>
+<h1>Custom business apps and finance support, <em>built on Google Sheets</em></h1>
+<p class="sub">Shop POS and inventory apps, staff trackers, Android apps, Power BI and Excel dashboards, and remote accounts receivable follow-up. Your data stays in your own Google Sheet: <strong>no servers, no monthly software fees</strong>.</p>
 <div class="row">
 <a class="btn b-g" href="https://wa.me/971507256801?text=Hi%20Haseeb%2C%20I%27d%20like%20to%20talk%20about%20a%20business%20app." target="_blank" rel="noopener">Get a free demo on WhatsApp</a>
 <a class="btn b-o" href="#work">See the work</a>
 </div>
 </div>
 <div>
-<div class="vid"><video id="reel" controls playsinline muted loop autoplay preload="metadata" poster="media/poster.jpg" aria-label="30-second showreel of Haseeb Mirza's business apps"><source src="media/portfolio-video.mp4" type="video/mp4">Your browser can’t play this video. <a href="media/portfolio-video.mp4">Download the showreel</a>.</video></div>
+<div class="vid"><video id="reel" controls playsinline muted loop autoplay preload="auto" poster="media/poster.jpg" aria-label="30-second showreel of Haseeb Mirza's business apps"><source src="media/portfolio-video.mp4" type="video/mp4"><source src="portfolio-video.mp4" type="video/mp4"></video>
+<button id="playbtn" class="playbtn" aria-label="Play showreel">&#9654;</button>
+<div id="verr" class="verr" hidden>The video could not load. <a href="https://wa.me/971507256801" style="text-decoration:underline">Message me on WhatsApp</a> and I will send it to you.</div></div>
 <div class="chaps" role="group" aria-label="Jump to a part of the showreel">
 <button data-t="0">Intro</button><button data-t="5">Shop POS</button><button data-t="10">Investment Tracker</button><button data-t="15">Team Planner</button><button data-t="20">Quiz App</button><button data-t="25">Get yours</button>
 </div>
@@ -164,6 +169,13 @@ footer{border-top:1px solid var(--line);padding:28px 0 90px;font-size:12px;color
 <div class="stat"><b>90+ ➔ 60 days</b><span>AR aging cut at Aal Mir Group</span></div>
 <div class="stat"><b>2,500+</b><span>Customer ledgers managed</span></div>
 </div>
+
+<section style="padding:36px 0 0" aria-label="What I do, what I need, what you get">
+<div class="grid g3" style="margin-top:0">
+<article class="card brief"><p class="eyebrow">What I do</p><h3>Apps, reports and receivables</h3><ul><li>Build apps: POS, inventory, staff planners, Android apps</li><li>Build dashboards and reports in Power BI and Excel</li><li>Run remote receivables follow-up and ledger reconciliation</li></ul></article>
+<article class="card brief need"><p class="eyebrow" style="color:var(--a)">What I need from you</p><h3>Just three things</h3><ul><li>A short chat on how you work today</li><li>A sample of your records: Excel file, notebook photo or screenshot (dummy numbers are fine)</li><li>Your business name and logo for your demo</li></ul></article>
+<article class="card brief"><p class="eyebrow">What you get</p><h3>A working tool you own</h3><ul><li>A demo with your own name on it before you decide</li><li>A live app on your own Google Sheet, with your team trained</li><li>Your data stays with you, with no monthly fees</li></ul></article>
+</div></section>
 
 <!-- SERVICES -->
 <section id="services">
@@ -287,20 +299,24 @@ footer{border-top:1px solid var(--line);padding:28px 0 90px;font-size:12px;color
 
 <script>
 (function(){
-  var v=document.getElementById('reel'),chips=document.querySelectorAll('.chaps button');
-  chips.forEach(function(b){b.addEventListener('click',function(){
-    if(!v)return;v.currentTime=+b.dataset.t;v.play().catch(function(){});
-  });});
+  var v=document.getElementById('reel'),chips=document.querySelectorAll('.chaps button'),pb=document.getElementById('playbtn'),er=document.getElementById('verr');
   if(v){
+    var tryPlay=function(){var p=v.play();if(p&&p.catch)p.catch(function(){});};
+    var sync=function(){pb.style.display=v.paused?'grid':'none';};
+    v.muted=true;
+    chips.forEach(function(b){b.addEventListener('click',function(){
+      var go=function(){v.currentTime=+b.dataset.t;tryPlay();};
+      if(v.readyState>0)go();else{v.addEventListener('loadedmetadata',go,{once:true});v.load();}
+    });});
+    pb.addEventListener('click',tryPlay);
+    ['play','pause','playing','ended'].forEach(function(e){v.addEventListener(e,sync);});
     v.addEventListener('timeupdate',function(){
       var i=Math.min(5,Math.floor(v.currentTime/5));
       chips.forEach(function(c,k){c.classList.toggle('on',k===i);});
     });
-    if('IntersectionObserver' in window){
-      new IntersectionObserver(function(e){
-        if(e[0].isIntersecting){v.play().catch(function(){});}else{v.pause();}
-      },{threshold:.25}).observe(v);
-    }
+    var srcs=v.querySelectorAll('source');
+    srcs[srcs.length-1].addEventListener('error',function(){er.hidden=false;pb.style.display='none';});
+    sync();tryPlay();
   }
   var links=document.querySelectorAll('nav a'),secs=[];
   links.forEach(function(a){var s=document.querySelector(a.getAttribute('href'));if(s)secs.push([a,s]);});
