@@ -1,4 +1,4 @@
-# Haseeb Mirza — Portfolio (v2.2)
+# Haseeb Mirza — Portfolio (v2.3)
 Static site, no build step. Upload everything to the repo root.
 
 - index.html — single-page portfolio (showreel, services, work showcase, career, order box, updates log)
