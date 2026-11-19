@@ -123,6 +123,11 @@ summary{font-weight:700;cursor:pointer;font-size:14px}details p{color:var(--mu);
 footer{border-top:1px solid var(--line);padding:28px 0 90px;font-size:12px;color:#64748b}
 .fab{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:none}
 @media(max-width:720px){.fab{display:flex}nav{order:3;width:100%;margin:0}.bar .b-a{display:none}}
+.order{background:linear-gradient(135deg,#0f172a,#052e2b);border:1px solid rgba(16,185,129,.3);border-radius:20px;padding:22px;margin:20px 0}
+.order .f{display:grid;gap:12px;grid-template-columns:1fr}.order label{display:block;font-size:12px;color:var(--mu);margin-bottom:4px}
+.order input,.order select,.order textarea{width:100%;background:#0b1220;border:1px solid var(--line2);color:#fff;border-radius:10px;padding:11px 12px;font:inherit;font-size:14px}
+@media(min-width:700px){.order .f{grid-template-columns:1fr 1fr}.order .full{grid-column:1/-1}}
+.fab{gap:8px}.fab .btn{flex:1}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -136,7 +141,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 90px;font-size:12px;color
 <header><div class="bar wrap">
 <a class="brand" href="#dashboard"><img src="images/logo.png" alt="Haseeb Mirza logo" width="36" height="36"><span>Haseeb Mirza<small>Available for remote work</small></span></a>
 <nav aria-label="Main">
-<a href="#dashboard">Dashboard</a><a href="#services">Services</a><a href="#work">Work Showcase</a><a href="#career">Career Profile</a><a href="#contact">Hire Me</a>
+<a href="#dashboard">Dashboard</a><a href="#services">Services</a><a href="#work">Work Showcase</a><a href="#career">Career Profile</a><a href="#contact">Hire Me</a><a href="#updates">Updates</a>
 </nav>
 <a class="btn b-a" href="https://www.fiverr.com/mhaseebmirza" target="_blank" rel="noopener">Order on Fiverr</a>
 </div></header>
@@ -151,7 +156,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 90px;font-size:12px;color
 <p class="sub">Shop POS and inventory apps, staff trackers, Android apps, Power BI and Excel dashboards, and remote accounts receivable follow-up. Your data stays in your own Google Sheet: <strong>no servers, no monthly software fees</strong>.</p>
 <div class="row">
 <a class="btn b-g" href="https://wa.me/971507256801?text=Hi%20Haseeb%2C%20I%27d%20like%20to%20talk%20about%20a%20business%20app." target="_blank" rel="noopener">Get a free demo on WhatsApp</a>
-<a class="btn b-o" href="#work">See the work</a>
+<a class="btn b-o" href="#work">See the work</a><a class="btn b-o" href="#order">Quick order</a>
 </div>
 </div>
 <div>
@@ -278,7 +283,19 @@ footer{border-top:1px solid var(--line);padding:28px 0 90px;font-size:12px;color
 <!-- CONTACT -->
 <section id="contact">
 <p class="eyebrow">Hire Me</p><h2>Let’s talk about your business</h2>
-<p class="lead">Fastest reply is on WhatsApp. Pick any platform below.</p>
+<p class="lead">Order your way: WhatsApp, email, phone or Fiverr. Tell me in your own words, every field is optional.</p>
+<div class="order" id="order">
+<div class="f">
+<div><label for="o-type">What do you need?</label><select id="o-type"><option>a shop POS or inventory app</option><option>a dashboard or report</option><option>receivables follow-up or reconciliation</option><option>an Android or web app</option><option>something else</option></select></div>
+<div><label for="o-name">Your name or business (optional)</label><input id="o-name" type="text" autocomplete="name" placeholder="e.g. Ali, ABC Traders"></div>
+<div class="full"><label for="o-msg">Details (optional)</label><textarea id="o-msg" rows="3" placeholder="Tell me how you work today, or just tap a button below"></textarea></div>
+</div>
+<div class="row" style="margin-top:14px">
+<a id="o-wa" class="btn b-g" href="https://wa.me/971507256801" target="_blank" rel="noopener">Send on WhatsApp</a>
+<a id="o-mail" class="btn b-b" href="mailto:haseebmeerza@hotmail.com">Send by email</a>
+<a class="btn b-a" href="https://www.fiverr.com/mhaseebmirza" target="_blank" rel="noopener">Order on Fiverr</a>
+<a class="btn b-o" href="tel:+971507256801">Call UAE</a>
+</div></div>
 <div class="row" style="align-items:flex-start;gap:24px;margin-top:8px">
 <div class="cgrid" style="flex:1;min-width:260px">
 <a class="ch" href="https://wa.me/971507256801" target="_blank" rel="noopener"><b class="i" style="background:#25d366">WA</b><span><strong>WhatsApp</strong><small>+971 50 725 6801</small></span></a>
@@ -291,11 +308,23 @@ footer{border-top:1px solid var(--line);padding:28px 0 90px;font-size:12px;color
 <div class="qr"><img src="images/whatsapp-qr.jpg" alt="WhatsApp QR code for Haseeb Mirza" width="152" height="152" loading="lazy">Scan to chat on WhatsApp</div>
 </div>
 </section>
+
+<section id="updates">
+<p class="eyebrow">Portfolio Updates</p><h2>Version log</h2>
+<p class="lead">This portfolio is improved regularly. Current version: <strong style="color:#fff">v2.2</strong>, updated 19 Nov 2026.</p>
+<ol class="tl" style="list-style:none;padding-left:0">
+<li><h3>v2.2 · Order from anywhere</h3><time>19 Nov 2026</time><p>Quick order box that sends your request by WhatsApp or email, call button, and this Updates page.</p></li>
+<li><h3>v2.1 · Clearer message and sturdier video</h3><time>19 Nov 2026</time><p>New headline, plus What I do, What I need and What you get cards. Video now has a play button and a fallback message.</p></li>
+<li><h3>v2.0 · New showreel and redesign</h3><time>19 Nov 2026</time><p>New 30-second showreel with chapter buttons, services, problem and solution case cards, career timeline, FAQ and contact grid.</p></li>
+<li><h3>v1.0 · First release</h3><time>Earlier in 2026</time><p>Dashboard with a 20-second showreel and four dummy-data demos.</p></li>
+</ol>
+<p style="font-size:13px;color:var(--mu)">Planned: new client projects in the showcase and real client reviews.</p>
+</section>
 </div>
 </main>
 
-<footer><div class="wrap"><p>© 2026 Haseeb Mirza. Google Sheets app developer, POS builder and accounts receivable specialist. Remote worldwide from the UAE.</p></div></footer>
-<a class="btn b-g fab" href="https://wa.me/971507256801?text=Hi%20Haseeb%2C%20I%27d%20like%20to%20talk%20about%20a%20business%20app." target="_blank" rel="noopener">Chat on WhatsApp</a>
+<footer><div class="wrap"><p>© 2026 Haseeb Mirza. Google Sheets app developer, POS builder and accounts receivable specialist. Remote worldwide from the UAE. <a href="#updates" style="text-decoration:underline">Version 2.2</a>, updated 19 Nov 2026.</p></div></footer>
+<div class="fab"><a class="btn b-g" href="https://wa.me/971507256801?text=Hi%20Haseeb%2C%20I%27d%20like%20to%20talk%20about%20a%20business%20app." target="_blank" rel="noopener">WhatsApp</a><a class="btn b-b" href="mailto:haseebmeerza@hotmail.com">Email</a></div>
 
 <script>
 (function(){
@@ -318,6 +347,14 @@ footer{border-top:1px solid var(--line);padding:28px 0 90px;font-size:12px;color
     srcs[srcs.length-1].addEventListener('error',function(){er.hidden=false;pb.style.display='none';});
     sync();tryPlay();
   }
+  var oi=document.getElementById('o-type'),on=document.getElementById('o-name'),om=document.getElementById('o-msg'),ow=document.getElementById('o-wa'),oe=document.getElementById('o-mail');
+  function ord(){
+    var t=oi.value,n=on.value.trim(),m=om.value.trim();
+    var msg='Hi Haseeb, I would like to order: '+t+'.'+(n?'\nName: '+n:'')+(m?'\nDetails: '+m:'');
+    ow.href='https://wa.me/971507256801?text='+encodeURIComponent(msg);
+    oe.href='mailto:haseebmeerza@hotmail.com?subject='+encodeURIComponent('Order enquiry: '+t)+'&body='+encodeURIComponent(msg);
+  }
+  [oi,on,om].forEach(function(e){e.addEventListener('input',ord);e.addEventListener('change',ord);});ord();
   var links=document.querySelectorAll('nav a'),secs=[];
   links.forEach(function(a){var s=document.querySelector(a.getAttribute('href'));if(s)secs.push([a,s]);});
   function spy(){
